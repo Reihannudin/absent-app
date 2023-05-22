@@ -41,7 +41,7 @@ export const ContentClassComponent = () => {
 
     return(
         <>
-            <div  className=" pt-14">
+            <div  className=" md:pt-14 pt-24 ">
                 <div  className=" pb-10 gap-6 ">
                     <div className="bg-white">
                         <div className="mx-auto">
@@ -63,7 +63,7 @@ export const ContentClassComponent = () => {
                         <div id="first" className="p-4">
                             <div className="w-full py-5">
                                 <div>
-                                    <ul className="grid gap-4 grid-cols-4">
+                                    <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
                                         <CardClassComponent />
                                         <CardClassComponent />
                                         <CardClassComponent />
@@ -74,7 +74,7 @@ export const ContentClassComponent = () => {
                         <div id="second" className="hidden p-4">
                             <div className="w-full py-5">
                                 <div>
-                                    <ul className="grid gap-4 grid-cols-4">
+                                    <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
                                         <CardClassComponent />
                                         <CardClassComponent />
 

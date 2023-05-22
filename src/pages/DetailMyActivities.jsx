@@ -80,8 +80,9 @@ function DetailMyActivities(){
                     </div>
                     <div id="third" className="hidden p-4">
                         <div className="w-10/12 mx-auto py-5">
-                            <div className="flex gap-4 justify-between">
-                                <div className="w-4/12">
+                            <div className="lg:flex gap-4 lg:justify-between grid  md:grid-cols-1 w-full">
+                                {/*grid , grid-cols-2*/}
+                                <div className="lg:w-4/12 w-full">
                                     <div className="shadow w-full pb-6 border-radius-8">
                                         <div className="mx-4 text-left pt-5 pb-3 ">
                                             <h2 style={{ fontSize:"18px"  ,color:"#646464"}}>Your link class</h2>
@@ -95,12 +96,11 @@ function DetailMyActivities(){
 
                                     </div>
                                 </div>
-                                <div className="w-8/12">
-                                    <div className=" my-4 text-left">
+                                <div className="lg:w-10/12 w-full">
+                                    <div className=" my-4 w-full text-left">
                                         <h2 style={{ fontSize:"20px"}}>Student List</h2>
                                     </div>
                                     <ul className=" w-full block">
-                                        <CardPeopleAbsentComponent />
                                         <CardPeopleAbsentComponent />
                                         <CardPeopleAbsentComponent />
                                     </ul>

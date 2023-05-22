@@ -5,6 +5,7 @@ import {ContentDetailActivitiesComponent} from "../component/ContentDetailActivi
 import {CardClassDetailComponent} from "../component/card/CardClassDetail.Component";
 import {CardPeopleComponent} from "../component/card/CardPeople.Component";
 import {CardPeopleAbsentComponent} from "../component/card/CardPeopleAbsent.Component";
+import {CardMyClassDetailComponent} from "../component/card/CardMyClassDetail.Component";
 
 
 function DetailActivities(){
@@ -85,8 +86,9 @@ function DetailActivities(){
                     </div>
                     <div id="third" className="hidden p-4">
                         <div className="w-10/12 mx-auto py-5">
-                            <div className="flex gap-4 justify-between">
-                                <div className="w-4/12">
+                            <div className="lg:flex gap-4 lg:justify-between grid  md:grid-cols-1 w-full">
+                                {/*grid , grid-cols-2*/}
+                                <div className="lg:w-4/12 w-full">
                                     <div className="shadow w-full pb-6 border-radius-8">
                                         <div className="mx-4 text-left pt-5 pb-3 ">
                                             <h2 style={{ fontSize:"18px"  ,color:"#646464"}}>Your link class</h2>
@@ -100,14 +102,14 @@ function DetailActivities(){
 
                                     </div>
                                 </div>
-                                <div className="w-8/12">
-                                    <div className=" my-4 text-left">
+                                <div className="lg:w-10/12 w-full">
+                                    <div className=" my-4 w-full text-left">
                                         <h2 style={{ fontSize:"20px"}}>Student List</h2>
                                     </div>
                                     <ul className=" w-full block">
-                                        <CardPeopleAbsentComponent />
-                                        <CardPeopleAbsentComponent />
-                                        <CardPeopleAbsentComponent />
+                                        <CardPeopleComponent />
+                                        <CardPeopleComponent />
+                                        <CardPeopleComponent />
                                     </ul>
                                 </div>
                             </div>
@@ -119,25 +121,6 @@ function DetailActivities(){
                 </div>
             </div>
         </>
-
-    // <>
-    //         <nav className="border-b">
-    //             <header className="w-10/12 mx-auto">
-    //                 <div className="flex py-1 gap-4">
-    //                     <button>
-    //                         <div style={{ height:"24px"}}>
-    //                             <img className="h-full" src="/assets/arrow-back.svg"/>
-    //                         </div>
-    //                     </button>
-    //                     <div className="my-2 text-left" >
-    //                         <h4 style={{ fontSize:"16px"}}>Name Title Absent</h4>
-    //                         <p style={{ fontSize:"14px"}}>Name Class</p>
-    //                     </div>
-    //                 </div>
-    //             </header>
-    //         </nav>
-    //
-    //     </>
     )
 }
 

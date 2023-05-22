@@ -38,7 +38,7 @@ export const ContentActivitiesComponent = () => {
 
     return(
         <>
-            <div  className=" pt-14">
+            <div  className=" md:pt-14  pt-24 ">
                 <div  className=" pb-10 gap-6 ">
                    <div className="bg-white">
                        <ul id="tabs" className="inline-flex mt-3 w-10/12 mx-auto  pt-2 px-1 pb-1 text-purple-500">
@@ -61,7 +61,7 @@ export const ContentActivitiesComponent = () => {
                         <div id="first" className="p-4">
                             <div className="w-full py-5">
                                 <div>
-                                    <ul className="grid gap-4 grid-cols-4">
+                                    <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
                                         <CardActivityComponent />
                                         <CardActivityComponent />
                                         <CardActivityComponent />
@@ -75,7 +75,7 @@ export const ContentActivitiesComponent = () => {
                         <div id="second" className="hidden p-4">
                             <div className="w-full py-5">
                                 <div>
-                                    <ul className="grid gap-4 grid-cols-4">
+                                    <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
                                         <CardActivityComponent />
                                         <CardActivityComponent />
                                         <CardActivityComponent />
@@ -87,7 +87,7 @@ export const ContentActivitiesComponent = () => {
                         <div id="third" className="hidden p-4">
                             <div className="w-full py-5">
                                 <div>
-                                    <ul className="grid gap-4 grid-cols-4">
+                                    <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
                                         <CardActivityComponent />
                                         <CardActivityComponent />
                                     </ul>

@@ -105,37 +105,27 @@ export const NavbarComponent = () => {
               pt-4
               text-base text-gray-700
              lg:flex
+             pb-4
              w-full
              lg:justify-between
              lg:pt-0"
                         >
-                            <li>
+                            <li className="py-3">
                                 <a className="md:p-4 py-2 block hover:text-purple-400" href="#"
-                                >Cart</a
+                                >Beranda</a
                                 >
                             </li>
-                            <li>
+                            <li className="py-3">
                                 <a className="md:p-4 py-2 block hover:text-purple-400" href="#"
-                                >Order Shipping</a
+                                >Activities</a
                                 >
                             </li>
-                            <li>
+                            <li className="py-3">
                                 <a className="md:p-4 py-2 block hover:text-purple-400" href="#"
-                                >Announcement</a
+                                >Class</a
                                 >
                             </li>
-                            <li>
-                                <a className="md:p-4 py-2 block hover:text-purple-400" href="#"
-                                >Events</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    className="md:p-4 py-2 block hover:text-purple-400 text-purple-500"
-                                    href="#"
-                                >Support</a
-                                >
-                            </li>
+
                         </ul>
                     </div>
                 </div>

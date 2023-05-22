@@ -7,7 +7,7 @@ export const HistoryListComponent = () => {
     return(
         <>
             <div className="w-full bg-white">
-                <div className="w-10/12 py-6 my-4 mx-auto">
+                <div className="lg:w-10/12 md:w-11/12  w-10/12  py-6 my-4 mx-auto">
                     <div className="mx-6 text-left ">
                         <h3 style={{ fontSize:"24px"}}>History</h3>
                     </div>

@@ -2,7 +2,7 @@
 export const CardAbsentComponent = () => {
     return(
         <>
-            <div className="bg-white shadow border-radius-8" style={{ width:"200px"}}>
+            <div className="bg-white shadow border-radius-8" style={{ minWidth:"200px" , maxWidth:"200px", width:"200px"}}>
                 <div className="w-full">
                     <div className="w-full">
                         <img className="w-full h-full border-radius-8" src="/assets/bg-absence.svg" />

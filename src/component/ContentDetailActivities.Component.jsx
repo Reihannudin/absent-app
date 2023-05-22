@@ -17,7 +17,7 @@ export const ContentDetailActivitiesComponent = () => {
             <div className="">
                 <div  className=" pb-10 gap-6 ">
                     <div className="bg-white">
-                        <div className="w-10/12 mx-auto grid grid-cols-2">
+                        <div className="md:w-10/12 w-11/12 mx-auto grid lg:grid-cols-2 grid-cols-1">
                             <div className="text-left mx-10 my-6">
                                 <div className=" mb-6  text-left" style={{ height:"24px"}}>
                                     <img className="text-left my-auto h-full" src="/assets/Wetrix.svg" alt="" />
@@ -47,7 +47,7 @@ export const ContentDetailActivitiesComponent = () => {
                                     <img src="/assets/absent-img.svg"/>
                                 </div>
                             </div>
-                            <div className="w-7/12 my-5 mx-auto">
+                            <div className="lg:w-7/12 w-11/12 my-5 mx-auto">
                                 <div className="shadow pb-6 border-radius-8">
                                     <div className="flex mx-4 py-5 justify-between">
                                         <h2 style={{ fontSize:"18px"}}>Your Absent</h2>

@@ -79,7 +79,7 @@ function DetailClasses() {
                     <div id="first" className="p-4">
                         <div className="w-full py-5">
                             <div>
-                                <ul className="grid gap-4 grid-cols-4">
+                                <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
                                     <CardClassDetailComponent />
                                     <CardClassDetailComponent />
                                 </ul>
@@ -89,7 +89,7 @@ function DetailClasses() {
                     <div id="second" className="hidden p-4">
                         <div className="w-full py-5">
                             <div>
-                                <ul className="grid gap-4 grid-cols-4">
+                                <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
                                     <CardClassDetailComponent />
                                     <CardClassDetailComponent />
                                     <CardClassDetailComponent />
@@ -102,8 +102,8 @@ function DetailClasses() {
                     </div>
                     <div id="third" className="hidden p-4">
                         <div className="w-full py-5">
-                            <div className="flex gap-4 justify-between">
-                                <div className="w-4/12">
+                            <div className="lg:flex gap-4 lg:justify-between grid  md:grid-cols-1 w-full">
+                                <div className="lg:w-4/12 w-full">
                                     <div className="shadow w-full pb-6 border-radius-8">
                                         <div className="mx-4 text-left pt-5 pb-3 ">
                                             <h2 style={{ fontSize:"18px"  ,color:"#646464"}}>Your link class</h2>
@@ -117,7 +117,7 @@ function DetailClasses() {
 
                                     </div>
                                 </div>
-                                <div className="w-8/12">
+                                <div className="lg:w-10/12 w-full">
                                     <ul className=" w-full block">
                                         <CardPeopleComponent />
                                         <CardPeopleComponent />

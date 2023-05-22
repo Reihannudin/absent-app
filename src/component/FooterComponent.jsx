@@ -5,11 +5,11 @@ export const FooterComponent = () => {
     return(
         <>
             <footer className="w-full py-6 bg-white" >
-                <div className="w-10/12 mx-auto">
+                <div className="xl:w-10/12 lg:w-11/12 sm:w-11/12 w-11/12 mx-auto">
                     <div className="my-3" style={{ height:"30px"}}>
                         <img className="w-full my-auto h-full" src="/assets/Wetrix.svg" alt="" />
                     </div>
-                    <div className="w-7/12 mb-8 mt-10 mx-auto">
+                    <div className="lg:w-7/12 md:w-11/12 w-11/12  mb-8 mt-10 md:mx-auto mx-auto">
                         <ul className="flex gap-5 font-medium mx-auto" style={{ fontSize:"15px" , color:"#8a8a8a"}}>
                             <li className="mx-auto hover:text-purple-500">
                                 <Link>
@@ -33,7 +33,7 @@ export const FooterComponent = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className="w-5/12 mb-6  mx-auto">
+                    <div className="md:w-6/12 w-8/12 mb-6  mx-auto">
                         <ul className="flex gap-5 font-medium mx-auto" style={{ fontSize:"15px" , color:"#8a8a8a"}}>
                             <li className="mx-auto hover:text-purple-500">
                                 <Link>
