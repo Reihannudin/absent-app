@@ -1,13 +1,10 @@
-import {NavbarComponent} from "../component/NavbarComponent";
-import {ContentActivitiesComponent} from "../component/ContentActivities.Component";
-import React, {useEffect} from "react";
-import {ContentDetailActivitiesComponent} from "../component/ContentDetailActivities.Component";
 import {CardClassDetailComponent} from "../component/card/CardClassDetail.Component";
 import {CardPeopleComponent} from "../component/card/CardPeople.Component";
-import {CardPeopleAbsentComponent} from "../component/card/CardPeopleAbsent.Component";
+import React, {useEffect} from "react";
+import {CardMyClassDetailComponent} from "../component/card/CardMyClassDetail.Component";
 
+function DetailMyClass (){
 
-function DetailActivities(){
 
     useEffect(() => {
         const tabsContainer = document.querySelector("#tabs");
@@ -60,12 +57,15 @@ function DetailActivities(){
                         <div className="">
                             <ul id="tabs" className="inline-flex mt-1 w-full mx-auto  pt-2 px-1 pb-1 text-purple-500">
                                 <li className=" px-4 text-gray-800 font-normal py-2 -mb-px">
-                                    <a id="default-tab" href="#first">Absent</a>
+                                    <a id="default-tab" href="#first">On Going</a>
+                                </li>
+                                <li className="px-4 text-gray-800 font-normal py-2 ">
+                                    <a href="#second">History</a>
                                 </li>
                                 <li className="px-4 text-gray-800 font-normal py-2 ">
                                     <a href="#third">People</a>
                                 </li>
-                                <li className="px-4 text-gray-800 hidden font-semibold py-2 ">
+                                <li className="px-4 text-gray-800 hidden font-normal py-2 ">
                                     <a href="#fourth">Tab 4</a>
                                 </li>
                             </ul>
@@ -75,16 +75,30 @@ function DetailActivities(){
             </nav>
             <div style={{ background:"#ffffff"}}>
                 {/* Tab Contents */}
-                <div id="tab-contents" className=" w-full mx-auto">
+                <div id="tab-contents" className=" w-10/12 mx-auto">
                     <div id="first" className="p-4">
-                        <div className="w-full pb-5 pt-2">
-                            <div style={{ background:"#ffffff"}}>
-                                <ContentDetailActivitiesComponent />
+                        <div className="w-full py-5">
+                            <div>
+                                <ul className="grid gap-4 grid-cols-4">
+                                    <CardMyClassDetailComponent />
+                                    <CardMyClassDetailComponent />
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="second" className="hidden p-4">
+                        <div className="w-full py-5">
+                            <div>
+                                <ul className="grid gap-4 grid-cols-4">
+                                    <CardMyClassDetailComponent />
+                                    <CardMyClassDetailComponent />
+                                    <CardMyClassDetailComponent />
+                                </ul>
                             </div>
                         </div>
                     </div>
                     <div id="third" className="hidden p-4">
-                        <div className="w-10/12 mx-auto py-5">
+                        <div className="w-full py-5">
                             <div className="flex gap-4 justify-between">
                                 <div className="w-4/12">
                                     <div className="shadow w-full pb-6 border-radius-8">
@@ -101,13 +115,10 @@ function DetailActivities(){
                                     </div>
                                 </div>
                                 <div className="w-8/12">
-                                    <div className=" my-4 text-left">
-                                        <h2 style={{ fontSize:"20px"}}>Student List</h2>
-                                    </div>
                                     <ul className=" w-full block">
-                                        <CardPeopleAbsentComponent />
-                                        <CardPeopleAbsentComponent />
-                                        <CardPeopleAbsentComponent />
+                                        <CardPeopleComponent />
+                                        <CardPeopleComponent />
+                                        <CardPeopleComponent />
                                     </ul>
                                 </div>
                             </div>
@@ -119,26 +130,7 @@ function DetailActivities(){
                 </div>
             </div>
         </>
-
-    // <>
-    //         <nav className="border-b">
-    //             <header className="w-10/12 mx-auto">
-    //                 <div className="flex py-1 gap-4">
-    //                     <button>
-    //                         <div style={{ height:"24px"}}>
-    //                             <img className="h-full" src="/assets/arrow-back.svg"/>
-    //                         </div>
-    //                     </button>
-    //                     <div className="my-2 text-left" >
-    //                         <h4 style={{ fontSize:"16px"}}>Name Title Absent</h4>
-    //                         <p style={{ fontSize:"14px"}}>Name Class</p>
-    //                     </div>
-    //                 </div>
-    //             </header>
-    //         </nav>
-    //
-    //     </>
     )
 }
 
-export default DetailActivities
+export default DetailMyClass

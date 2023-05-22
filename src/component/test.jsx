@@ -1,72 +1,54 @@
-import {useEffect} from "react";
-
-function Test() {
-    useEffect(() => {
-        const tabsContainer = document.querySelector("#tabs");
-        const tabTogglers = tabsContainer.querySelectorAll("#tabs a");
-
-        tabTogglers.forEach(function(toggler) {
-            toggler.addEventListener("click", function(e) {
-                e.preventDefault();
-
-                let tabName = this.getAttribute("href");
-
-                let tabContents = document.querySelector("#tab-contents");
-
-                for (let i = 0; i < tabContents.children.length; i++) {
-                    tabTogglers[i].parentElement.classList.remove("border-t", "border-r", "border-l", "-mb-px", "bg-white");
-                    tabContents.children[i].classList.remove("hidden");
-
-                    if ("#" + tabContents.children[i].id === tabName) {
-                        continue;
-                    }
-                    tabContents.children[i].classList.add("hidden");
-                }
-
-                e.target.parentElement.classList.add("border-t", "border-r", "border-l", "-mb-px", "bg-white");
-            });
-        });
-
-        return () => {
-            tabTogglers.forEach(function(toggler) {
-                toggler.removeEventListener("click", () => {});
-            });
-        };
-    }, []);
-
-    return (
-        <div className="rounded border w-1/2 mx-auto mt-4">
-            <ul id="tabs" className="inline-flex pt-2 px-1 w-full border-b">
-                <li className="bg-white px-4 text-gray-800 font-semibold py-2 rounded-t border-t border-r border-l -mb-px">
-                    <a id="default-tab" href="#first">Tab 1</a>
-                </li>
-                <li className="px-4 text-gray-800 font-semibold py-2 rounded-t">
-                    <a href="#second">Tab 2</a>
-                </li>
-                <li className="px-4 text-gray-800 font-semibold py-2 rounded-t">
-                    <a href="#third">Tab 3</a>
-                </li>
-                <li className="px-4 text-gray-800 font-semibold py-2 rounded-t">
-                    <a href="#fourth">Tab 4</a>
-                </li>
-            </ul>
-
-            {/* Tab Contents */}
-            <div id="tab-contents">
-                <div id="first" className="p-4">
-                    First tab
-                </div>
-                <div id="second" className="hidden p-4">
-                    Second tab
-                </div>
-                <div id="third" className="hidden p-4">
-                    Third tab
-                </div>
-                <div id="fourth" className="hidden p-4">
-                    Fourth tab
-                </div>
-            </div>
-        </div>
-    );
-}
-export default Test
+// import {useEffect, useState} from "react";
+// import {useNavigate} from "react-router-dom";
+//
+// function Test() {
+//
+//     const modal , setModal = useState(false)
+//
+//     const navigate = useNavigate()
+//
+//     function toggleModal(){
+//
+//         document.getElementById('modal').classList.toggle('hidden')
+//     }
+//
+//     return (
+//         <>
+//             <div className="flex items-center justify-center h-screen">
+//                 <button className="py-2 px-6 bg-blue-500 text-white rounded hover:bg-blue-700"
+//                         onClick={toggleModal}>Show Modal
+//                 </button>
+//             </div>
+//             <div className="fixed z-10 overflow-y-auto top-0 w-full left-0 hidden" id="modal">
+//                 <div
+//                     className="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+//                     <div className="fixed inset-0 transition-opacity">
+//                         <div className="absolute inset-0 bg-gray-900 opacity-75"/>
+//                     </div>
+//                     <span className="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+//                     <div
+//                         className="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+//                         role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+//                         <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+//                             <label>Name</label>
+//                             <input type="text" className="w-full bg-gray-100 p-2 mt-2 mb-3"/>
+//                             <label>Url</label>
+//                             <input type="text" className="w-full bg-gray-100 p-2 mt-2 mb-3"/>
+//                         </div>
+//                         <div className="bg-gray-200 px-4 py-3 text-right">
+//                             <button type="button"
+//                                     className="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2"
+//                                     onClick="toggleModal()"><i className="fas fa-times"></i> Cancel
+//                             </button>
+//                             <button type="button"
+//                                     className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2"><i
+//                                 className="fas fa-plus"></i> Create
+//                             </button>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </>
+//     );
+// }
+// export default Test

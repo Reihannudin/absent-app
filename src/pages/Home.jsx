@@ -8,7 +8,7 @@ function Home(){
     return(
         <>
             <NavbarComponent />
-            <div style={{ background:"#FAFBFC"}}>
+            <div style={{ background:"#FFFFFF"}}>
                 <ContentHomeComponent />
                 <RecentlyListComponent />
                 <HistoryListComponent />

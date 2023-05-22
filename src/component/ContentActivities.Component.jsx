@@ -42,13 +42,13 @@ export const ContentActivitiesComponent = () => {
                 <div  className=" pb-10 gap-6 ">
                    <div className="bg-white">
                        <ul id="tabs" className="inline-flex mt-3 w-10/12 mx-auto  pt-2 px-1 pb-1 text-purple-500">
-                           <li className=" px-4 text-gray-800 font-semibold py-2 -mb-px">
+                           <li className=" px-4 text-gray-800 font-normal py-2 -mb-px">
                                <a id="default-tab" href="#first">On Going</a>
                            </li>
-                           <li className="px-4 text-gray-800 font-semibold py-2 ">
+                           <li className="px-4 text-gray-800 font-normal py-2 ">
                                <a href="#second">Done</a>
                            </li>
-                           <li className="px-4 text-gray-800 font-semibold py-2 ">
+                           <li className="px-4 text-gray-800 font-normal py-2 ">
                                <a href="#third">Created</a>
                            </li>
                            <li className="px-4 text-gray-800 hidden font-semibold py-2 ">

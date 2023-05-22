@@ -1,13 +1,8 @@
-import {NavbarComponent} from "../component/NavbarComponent";
-import {ContentActivitiesComponent} from "../component/ContentActivities.Component";
 import React, {useEffect} from "react";
 import {ContentDetailActivitiesComponent} from "../component/ContentDetailActivities.Component";
-import {CardClassDetailComponent} from "../component/card/CardClassDetail.Component";
-import {CardPeopleComponent} from "../component/card/CardPeople.Component";
 import {CardPeopleAbsentComponent} from "../component/card/CardPeopleAbsent.Component";
 
-
-function DetailActivities(){
+function DetailMyActivities(){
 
     useEffect(() => {
         const tabsContainer = document.querySelector("#tabs");
@@ -119,26 +114,7 @@ function DetailActivities(){
                 </div>
             </div>
         </>
-
-    // <>
-    //         <nav className="border-b">
-    //             <header className="w-10/12 mx-auto">
-    //                 <div className="flex py-1 gap-4">
-    //                     <button>
-    //                         <div style={{ height:"24px"}}>
-    //                             <img className="h-full" src="/assets/arrow-back.svg"/>
-    //                         </div>
-    //                     </button>
-    //                     <div className="my-2 text-left" >
-    //                         <h4 style={{ fontSize:"16px"}}>Name Title Absent</h4>
-    //                         <p style={{ fontSize:"14px"}}>Name Class</p>
-    //                     </div>
-    //                 </div>
-    //             </header>
-    //         </nav>
-    //
-    //     </>
     )
 }
 
-export default DetailActivities
+export default DetailMyActivities

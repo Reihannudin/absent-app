@@ -8,7 +8,7 @@ function Activities(){
     return(
         <>
             <NavbarComponent />
-            <div style={{ background:"#FAFBFC"}}>
+            <div style={{ background:"#FFFFFF"}}>
                 <ContentActivitiesComponent />
             </div>
             <FooterComponent />

@@ -1,5 +1,6 @@
 
 export const ContentHomeComponent = () => {
+
     return(
         <>
             <div className="w-full  pt-14">

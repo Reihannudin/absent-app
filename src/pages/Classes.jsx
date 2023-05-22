@@ -8,7 +8,7 @@ function Classes (){
     return(
         <>
             <NavbarComponent />
-            <div style={{ background:"#FAFBFC"}}>
+            <div style={{ background:"#FFFFFF"}}>
                 <ContentClassComponent />
             </div>
             <FooterComponent />

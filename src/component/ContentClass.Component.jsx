@@ -27,7 +27,7 @@ export const ContentClassComponent = () => {
                     }
                     tabContents.children[i].classList.add("hidden");
 
-                    e.target.parentElement.classList.add("border-b"  , "py-1" , "-mb-px", "text-purple-500" , )
+                    e.target.parentElement.classList.add("border-b" , "bg-white" , "py-1" , "-mb-px", "text-purple-500" , )
                 }
             });
         });
@@ -46,10 +46,10 @@ export const ContentClassComponent = () => {
                     <div className="bg-white">
                         <div className="mx-auto">
                             <ul id="tabs" className="inline-flex mt-1 w-4/12 mx-auto justify-between  pt-2 px-1 pb-1 text-purple-500">
-                                <li className=" px-4 text-gray-800 font-semibold py-2 -mb-px">
+                                <li className=" px-4 border-b text-gray-800  font-normal  py-2 -mb-px">
                                     <a id="default-tab" href="#first">Classes</a>
                                 </li>
-                                <li className="px-4 text-gray-800 font-semibold py-2 ">
+                                <li className="px-4 text-gray-800 font-normal py-2 ">
                                     <a href="#second">My Class</a>
                                 </li>
                                 <li className="px-4 text-gray-800 hidden font-semibold py-2 ">
@@ -57,24 +57,6 @@ export const ContentClassComponent = () => {
                                 </li>
                             </ul>
                         </div>
-
-                        {/*<ul id="tabs" className="inline-flex mt-3 w-10/12 mx-auto  pt-2 px-1 pb-1 text-purple-500">*/}
-                        {/*    <li className=" px-4 text-gray-800 w-6/12 font-semibold py-2 -mb-px">*/}
-                        {/*        <a id="default-tab" className="w-full" href="#first">*/}
-                        {/*            <div className="w-full">*/}
-                        {/*                Classes*/}
-                        {/*            </div></a>*/}
-                        {/*    </li>*/}
-                        {/*    <li className="px-4 text-gray-800 w-6/12 font-semibold py-2 ">*/}
-                        {/*        <a href="#second" className="w-full">*/}
-                        {/*            <div className="w-full">*/}
-                        {/*                My Class*/}
-                        {/*            </div></a>*/}
-                        {/*    </li>*/}
-                        {/*    <li className="px-4 text-gray-800 hidden font-semibold py-2 ">*/}
-                        {/*        <a href="#fourth">Tab 4</a>*/}
-                        {/*    </li>*/}
-                        {/*</ul>*/}
                     </div>
                     {/* Tab Contents */}
                     <div id="tab-contents" className=" w-10/12 mx-auto">
