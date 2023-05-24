@@ -51,12 +51,12 @@ class ClassesController extends Controller
 
     }
 
-    public function update(Request $request , $class_id){
+    public function update(Request $request , $user_id , $class_id){
 
         $name = $request->query('name');
         $vocation_id = $request->query('vocation_id');
 
-        $classValidate = Classes::query()->where('id' , $class_id)->first();
+        $classValidate = Classes::query()->where('id' , $class_id)->where('teacher_id' , $user_id)->first();
 
         if (!$classValidate){
             $error = "class Id Not same";
@@ -71,12 +71,19 @@ class ClassesController extends Controller
         }
     }
 
-    public function delete($id){
-        Classes::query()->where('id' , $id)->delete();
-        return "successfully delete";
+    public function delete($user_id , $id){
+
+        $classValidate = Classes::query()->where('id' , $id)->where('teacher_id' , $user_id)->first();
+        if (!$classValidate){
+            $error = "you already delete";
+            return response()->json($error);
+        } else{
+            $classValidate->delete();
+            return "successfully delete";
+        }
     }
 
-    public function studentJoin(Request $request , $user_id){
+    public function join(Request $request , $user_id){
 
         $code = $request->query('code');
 
@@ -86,21 +93,36 @@ class ClassesController extends Controller
             $error = "Code is wrong";
             return response()->json($error);
         } else {
-            DB::table('pivot_students_to_classes')->insert([
-                'student_id' => $user_id,
-                'class_id' => $codeValidate->id,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
-            return "successfull join class";
+
+            $pivotValidate = DB::table('pivot_students_to_classes')->where('student_id' , $user_id)->where('class_id' , $codeValidate->id)->first();
+
+            if ($pivotValidate){
+                $error = "Student already join";
+                return response()->json($error);
+            } else{
+                DB::table('pivot_students_to_classes')->insert([
+                    'student_id' => $user_id,
+                    'class_id' => $codeValidate->id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]);
+                return "successfull join class";
+            }
         }
 
     }
 
-    public function studentUnjoin($userid , $classId){
+    public function out($userid , $classId){
 
-        DB::table('pivot_students_to_classes')->where('student_id' , $userid)->where('class_id' , $classId)->delete();
-        return "successfully delete";
+        $pivotValidate =  DB::table('pivot_students_to_classes')->where('student_id' , $userid)->where('class_id' , $classId)->first();
+
+        if (!$pivotValidate){
+           $error = "you already delete";
+           return response()->json($error);
+        } else{
+            $pivotValidate->delete();
+            return "successfully delete";
+        }
 
     }
 

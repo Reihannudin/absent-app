@@ -30,19 +30,19 @@ Route::controller(\App\Http\Controllers\ClassesController::class)->group(functio
     Route::get('/class/{user_id}' , 'index')->name('class.index');
     Route::get('/class/{user_id}/{id}' , 'index')->name('class.index');
     Route::get('/class/{user_id}/create' , 'create')->name('class.create');
-    Route::get('/class/{class_id}/update' , 'update')->name('class.update');
-    Route::get('/class/{id}/delete' , 'delete')->name('class.delete');
+    Route::get('/class/{user_id}/{class_id}/update' , 'update')->name('class.update');
+    Route::get('/class/{user_id}/delete/{id}' , 'delete')->name('class.delete');
 
-    Route::get('/class/{user_id}/join' , 'studentJoin')->name('class.join');
-    Route::get('/class/{user_id}/unjoin' , 'studentUnJoin')->name('class.unjoin');
+    Route::get('/student/{user_id}/join/class' , 'join')->name('class.join');
+    Route::get('/student/{user_id}/out/class/{class_id}' , 'out')->name('class.unjoin');
 
 });
 
 Route::controller(\App\Http\Controllers\AbsentController::class)->group(function (){
-    Route::get('/absent/{user_id}' , 'index')->name('absent.index');
-    Route::get('/absent/{user_id}/create' , 'create')->name('absent.create');
-    Route::get('/absent/{id}/update' , 'update')->name('absent.update');
-    Route::get('/absent/{id}/delete' , 'delete')->name('absent.delete');
+    Route::get('/teacher/{user_id}/absent' , 'indexTeacher')->name('absent.index.teacher');
+    Route::get('/teacher/{user_id}/create/absent' , 'create')->name('absent.create');
+    Route::get('/teacher/{user_id}/update/absent/{id}' , 'update')->name('absent.update');
+    Route::get('/teacher/{user_id}/delete/absent/{id}' , 'delete')->name('absent.delete');
 
     Route::get('/absent/{user_id}/post/{absent_id}/action'  , 'absents')->name('absent.action');
 });

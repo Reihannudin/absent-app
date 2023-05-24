@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AbsentResources;
+use App\Http\Resources\ClassResources;
 use App\Models\Absents;
 use App\Models\Classes;
 use App\Models\User;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AbsentController extends Controller
 {
-    public function index($user_id){
+    public function indexTeacher($user_id){
         $absent = AbsentResources::collection(
             Absents::query()->where('teacher_id' , $user_id)->get()
         );
@@ -31,7 +32,8 @@ class AbsentController extends Controller
     public function create(Request $request , $user_id){
 
         $title = $request->query('title');
-        $time = $request->query('time');
+        $starttime = $request->query('starttime');
+        $endtime = $request->query('endtime');
         $date = $request->query('date');
         $classes_id = $request->query('classesId');
         $vocation_id = $request->query('vocationId');
@@ -44,7 +46,8 @@ class AbsentController extends Controller
         } else {
             Absents::query()->create([
                'title' => $title,
-               'time' => $time,
+               'starttime' => $starttime,
+                'endtime' => $endtime,
                'date' => $date,
                 'teacher_id' => $user_id,
                 'classes_id' => $classes_id,
@@ -57,12 +60,13 @@ class AbsentController extends Controller
 
     }
 
-    public function update(Request $request , $id){
+    public function update(Request $request , $user_id , $id ){
         $title = $request->query('title');
+        $starttime = $request->query('starttime');
+        $endtime = $request->query('endtime');
         $date = $request->query('date');
-        $time = $request->query('time');
 
-        $validationAbsent = Absents::query()->where('id' , $id)->first();
+        $validationAbsent = Absents::query()->where('teacher_id' , $user_id)->where('id' , $id)->first();
 
         if (!$validationAbsent){
             $error = "id is not same";
@@ -70,7 +74,8 @@ class AbsentController extends Controller
         } else {
             Absents::query()->update([
                'title' => $title,
-               'time' => $time,
+                'starttime' => $starttime,
+                'endtime' => $endtime,
                 'date' => $date,
             ]);
             return "successfully update absent";
@@ -78,24 +83,35 @@ class AbsentController extends Controller
 
     }
 
-    public function delete($id){
-        Absents::query()->where('id' , $id)->delete();
-        return "successfully delete";
+    public function delete($user_id , $id ){
+        $absentValidate = Absents::query()->where('teacher_id' , $user_id)->where('id' , $id)->first();
+        if (!$absentValidate){
+            $error = "absent not found or you already delete";
+            return response()->json($error);
+        } else{
+            $absentValidate->delete();
+            return "successfully delete";
+        }
     }
 
-    public function absents(Request $request , $user_id , $absent_id){
-
+    public function absents(Request $request, $user_id, $absent_id)
+    {
         $action = $request->query('action');
         $password = $request->query('password');
 
-        $absentTime = Carbon::now()->format('H:i');
-        $startTime = Absents::query()->where('id' , $absent_id)->select('starttime')->first();
-        $endTime = Absents::query()->where('id' , $absent_id)->select('endtime')->first();
+        $absentTime = Carbon::now();
+        $startTime = Carbon::parse(Absents::query()->where('id', $absent_id)->value('starttime'));
+        $endTime = Carbon::parse(Absents::query()->where('id', $absent_id)->value('endtime'));
 
-        if ($absentTime->between($startTime , $endTime)){
-            $user = User::query()->where('id' , $user_id)->first();
-            if (Hash::check($password , $user->password)){
-                if ($action == "ijin"){
+        if ($absentTime->between($startTime, $endTime)) {
+            $user = User::query()->where('id', $user_id)->first();
+
+//            return "berhasil";
+//            $checkPassword = Hash::check($password, $user->password);
+//            dd($checkPassword);
+
+            if (Hash::check($password, $user->password)) {
+                if ($action === "ijin") {
                     $reason = $request->query('reason');
 
                     DB::table('pivot_students_to_absents')->insert([
@@ -107,9 +123,8 @@ class AbsentController extends Controller
                         'created_at' => Carbon::now(),
                     ]);
 
-                    return "berhasil absent dengan action ijin dan alasan " + $action;
-
-                }  else if ($action == "hadir"){
+                    return "Berhasil absen dengan action ijin dan alasan " . $reason;
+                } else if ($action === "hadir") {
                     DB::table('pivot_students_to_absents')->insert([
                         'student_id' => $user_id,
                         'absent_id' => $absent_id,
@@ -118,14 +133,13 @@ class AbsentController extends Controller
                         'created_at' => Carbon::now(),
                     ]);
 
-                    return "berhasil absent dengan action hadir";
+                    return "Berhasil absen dengan action hadir";
                 }
             }
-        }else{
-            $error = "Maaf tetapi waktu berlangsungnya absen sudah selesai";
+        } else {
+            $error = "Maaf, tetapi waktu berlangsungnya absen sudah selesai";
             return $error;
         }
-
     }
 
 }
