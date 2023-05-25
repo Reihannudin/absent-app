@@ -18,12 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(\App\Http\Controllers\AuthController::class)->group(function (){
-    Route::get('/login/form' , 'login')->name('login.form');
-    Route::get('/signup/form' , 'signUp')->name('signup.form');
-    Route::get('/signup/add/password/{email}' , 'savePassword')->name('signup.save.password');
-    Route::get('/signup/add/information/{email}' , 'addInformation')->name('signup.add.information');
-    Route::get('/logout' , 'logout')->name('logout');
+Route::get('/logout', function () {
+    return "logout";
 });
 
 Route::controller(\App\Http\Controllers\ClassesController::class)->group(function (){
