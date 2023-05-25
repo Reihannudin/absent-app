@@ -1,14 +1,52 @@
-import React, { useState } from 'react';
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Link, useNavigate} from "react-router-dom";
+import http from "../config/http";
 
 
 export const NavbarComponent = () => {
 
-    const [isMenuHidden , setIsMenuHidden] = useState(true);
+    const navigate = useNavigate();
+    const urlParams = new URLSearchParams(window.location.search);
+    const auth_token = urlParams.get("auth_token");
+    const isLogin = urlParams.get("isLogin");
 
+    const [isMenuHidden , setIsMenuHidden] = useState(true);
+    const [isDropdownHidden  , setIsDropdownHidden] = useState(true);
     const toggleMenu = () => {
         setIsMenuHidden((prevHidden) => !prevHidden);
     };
+
+    const toggleDropdown = () => {
+        setIsDropdownHidden((prevHidden) => ! prevHidden);
+    }
+
+    const logged = JSON.parse(localStorage.getItem('isLogin'));
+    const user = JSON.parse(localStorage.getItem('whoLogin'));
+
+
+    useEffect(() => {
+        if (auth_token) {
+            http
+                .get(`/logout/${user.id}`, {
+                    method: 'POST',
+                    headers: {
+                        Authorization: "Bearer " + auth_token,
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                    },
+                })
+                .then((res) => {
+                    if (res) {
+                        localStorage.setItem('isLogin' , true)
+                        localStorage.setItem("token", auth_token);
+                        localStorage.setItem("whoLogin", user);
+                        navigate("/");
+                    } else {
+                        alert("Something wrong!");
+                    }
+                });
+        }
+    }, []);
 
     return(
         <>
@@ -50,9 +88,7 @@ export const NavbarComponent = () => {
                                             stroke="currentColor"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
+
                                                 d="M4 6h16M4 12h16M4 18h16"
                                             />
                                         </svg>
@@ -80,20 +116,43 @@ export const NavbarComponent = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="my-auto flex gap-2 md:gap-1">
-                                        <button className="btn lg:block weverse-background-btn border-radius-20 px-4 sm:px-5 lg:px-5 xl:px-6 py-1">
-                                            <Link to="/login">
-                                                <p className="font-medium  text-white" style={{ fontSize:"14px"}}>Log in</p>
-                                            </Link>
-                                        </button>
-                                        <button className="btn  lg:block border-radius-20 sm:px-5 px-4 lg:px-5 xl:px-6 py-1" style={{ border:"1px solid #AC7EEE"}}>
-                                            <Link to="/signup">
-                                                <p className="font-medium weverse-color" style={{ fontSize:"14px"}}>Sign Up</p>
-                                            </Link>
-                                        </button>
-                                    </div>
-                                </div>
 
+                                    {logged ? (
+                                        <div className="my-auto flex gap-3">
+                                            <li className="ps-3 relative list-none" style={{ borderLeft:"1px solid #ebebeb"}}>
+                                                <button  onClick={toggleDropdown} style={{ fontSize:"14px"}}  data-dropdown-toggle="dropdown_profile"
+                                                        className=" cursor-pointer gap-2 flex ">
+                                                    <span style={{ fontSize:"14px"}} className="font-medium text-gray-500">{user.name}</span>
+                                                    <div className="my-auto" style={{ height:"14px" , width:"14px"}}>
+                                                        <img  className="w-full h-full" src="/assets/expand-icon.svg"/>
+                                                    </div>
+                                                </button>
+                                                    <div id="dropdown_profile"
+                                                         className={`z-10 ${isDropdownHidden ? 'hidden' : ''} absolute left-0 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}>
+                                                        <ul className="py-2 text-sm text-left text-gray-700 dark:text-gray-400"
+                                                            aria-labelledby="dropdownLargeButton">
+                                                            <li>
+                                                                <a href={`http://127.0.0.1:8000/logout`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Log Out</a>
+                                                            </li>
+                                                        </ul>
+                                                </div>
+                                            </li>
+                                        </div>
+                                    ):(
+                                        <div className="my-auto flex gap-2 md:gap-1">
+                                            <button className="btn lg:block weverse-background-btn border-radius-20 px-4 sm:px-5 lg:px-5 xl:px-6 py-1">
+                                                <Link to="/login">
+                                                    <p className="font-medium  text-white" style={{ fontSize:"14px"}}>Log in</p>
+                                                </Link>
+                                            </button>
+                                            <button className="btn  lg:block border-radius-20 sm:px-5 px-4 lg:px-5 xl:px-6 py-1" style={{ border:"1px solid #AC7EEE"}}>
+                                                <Link to="/signup">
+                                                    <p className="font-medium weverse-color" style={{ fontSize:"14px"}}>Sign Up</p>
+                                                </Link>
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </nav>
                     </header>

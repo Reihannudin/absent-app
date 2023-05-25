@@ -8,7 +8,7 @@ function Home(){
     return(
         <>
             <NavbarComponent />
-            <div style={{ background:"#FFFFFF"}}>
+            <div className="h-full" style={{ background:"#FFFFFF"}}>
                 <ContentHomeComponent />
                 <RecentlyListComponent />
                 <HistoryListComponent />

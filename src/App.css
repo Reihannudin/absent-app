@@ -12,6 +12,36 @@
   font-family: 'Rubik', sans-serif;
 }
 
+.left-right-pop-up{
+  left:35% ;
+  right:50%;
+}
+
+@media screen and (max-width: 1200px) {
+  .left-right-pop-up{
+    left:30% ;
+    right:50%;
+  }
+
+}
+
+@media screen and (max-width: 900px) {
+  .left-right-pop-up{
+    left:25% ;
+    right:50%;
+  }
+
+}
+
+@media screen and (max-width: 640px) {
+  .left-right-pop-up{
+    left:20% ;
+    right:50%;
+  }
+
+}
+
+
 .weverse-color{
   color: #A373E9;
 }

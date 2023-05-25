@@ -1,4 +1,3 @@
-import {CardAbsentComponent} from "./card/CardAbsent.Component";
 import {CardHorizontalComponent} from "./card/CardHorizontal.Component";
 
 
