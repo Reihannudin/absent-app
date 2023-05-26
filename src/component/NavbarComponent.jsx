@@ -102,16 +102,32 @@ export const NavbarComponent = () => {
                                                             <p>Beranda</p>
                                                         </Link>
                                                     </li>
-                                                    <li className="pe-6 text-gray-400 hover:text-purple-500" style={{ borderRight:"1px solid #ebebeb"}}>
-                                                        <Link to="http://localhost:3000/activities">
-                                                            <p>Activities</p>
-                                                        </Link>
-                                                    </li>
-                                                    <li className="pe-6 text-gray-400 hover:text-purple-500">
-                                                        <Link to="http://localhost:3000/class">
-                                                            <p>Class</p>
-                                                        </Link>
-                                                    </li>
+                                                    { user === null ? (
+                                                        <li className="pe-6 text-gray-400 hover:text-purple-500" style={{ borderRight:"1px solid #ebebeb"}}>
+                                                            <Link to="http://localhost:3000/login">
+                                                                <p>Activities</p>
+                                                            </Link>
+                                                        </li>
+                                                    ) : (
+                                                        <li className="pe-6 text-gray-400 hover:text-purple-500" style={{ borderRight:"1px solid #ebebeb"}}>
+                                                            <Link to="http://localhost:3000/activities">
+                                                                <p>Activities</p>
+                                                            </Link>
+                                                        </li>
+                                                    )}
+                                                    {user === null ? (
+                                                        <li className="pe-6 text-gray-400 hover:text-purple-500">
+                                                            <Link to="http://localhost:3000/login">
+                                                                <p>Class</p>
+                                                            </Link>
+                                                        </li>
+                                                    ) : (
+                                                        <li className="pe-6 text-gray-400 hover:text-purple-500">
+                                                            <Link to="http://localhost:3000/class">
+                                                                <p>Class</p>
+                                                            </Link>
+                                                        </li>
+                                                    )}
                                                 </ul>
                                             </div>
                                         </div>

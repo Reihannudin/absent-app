@@ -13,6 +13,8 @@ import DetailMyActivities from "./pages/DetailMyActivities";
 import AddPassword from "./pages/AddPassword";
 import AddInformation from "./pages/AddInformation";
 import Logout from "./pages/Logout";
+import {PopUpCardHistoryComponent} from "./component/card/popup/PopUpCardHistory.Component";
+import {PopUpCardActivityComponent} from "./component/card/popup/PopUpCardActivity.Component";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/test/:test" element={<Test />} />
             <Route path="/activities" element={<Activities />} />
+            <Route path="/activities/:id" element={<PopUpCardActivityComponent/>} />
+            <Route path="/absent/:id" element={<PopUpCardHistoryComponent/>} />
             <Route path="/absent/detail/:id" element={<DetailActivities />} />
             <Route path="/class" element={<Classes />} />
             <Route path="/class/detail/:id" element={<DetailClasses />} />

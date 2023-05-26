@@ -36,6 +36,8 @@ export const ContentActivitiesComponent = () => {
         };
     }, [])
 
+    const user = JSON.parse(localStorage.getItem('whoLogin'));
+
     return(
         <>
             <div  className=" md:pt-14  pt-24 ">
@@ -59,18 +61,27 @@ export const ContentActivitiesComponent = () => {
                     {/* Tab Contents */}
                     <div id="tab-contents" className=" w-10/12 mx-auto">
                         <div id="first" className="p-4">
-                            <div className="w-full py-5">
-                                <div>
-                                    <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
-                                        <CardActivityComponent />
-                                        <CardActivityComponent />
-                                        <CardActivityComponent />
-                                        <CardActivityComponent />
-                                        <CardActivityComponent />
-                                        <CardActivityComponent />
-                                    </ul>
+                            {user === null ?(
+                                <div className="gap-4 text-center mx-6" style={{ overflowX: "auto" }}>
+                                    <div className="mx-auto my-14">
+                                        <h2 style={{  fontSize:"18px", color:"#716f6f"}}>Tidak ada absent yang sedang berlangsung saat ini</h2>
+                                        <p style={{  fontSize:"14px", color:"#716f6f"}}>Tenanglah dan kami akan memberi tahu anda jika ada absent yang berlangsung</p>
+                                    </div>
                                 </div>
-                            </div>
+                            ) : (
+                                <div className="w-full py-5">
+                                    <div>
+                                        <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
+                                            <CardActivityComponent />
+                                            <CardActivityComponent />
+                                            <CardActivityComponent />
+                                            <CardActivityComponent />
+                                            <CardActivityComponent />
+                                            <CardActivityComponent />
+                                        </ul>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                         <div id="second" className="hidden p-4">
                             <div className="w-full py-5">
