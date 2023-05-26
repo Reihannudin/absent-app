@@ -16,26 +16,21 @@ class VocationController extends Controller
     public function create(Request $request , $user_id){
 
         $name = $request->query('name');
-        $vocationValidate = Vocations::query()->where('user_id' , $user_id)->first();
 
-        if (!$vocationValidate){
-            $error = "this user don't have vocation";
-            return response()->json($error);
-        }else{
-            Vocations::query()->create([
-                'name' => $name,
-                'user_id' => $user_id,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
-            return "successfully create class";
-        }
+        Vocations::query()->create([
+            'name' => $name,
+            'user_id' => $user_id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+        return redirect(env('APP_FE_URL') . '/');
+
     }
 
-    public function update(Request $request , $user_id  , $vocation_id){
+    public function update(Request $request , $id){
 
         $name = $request->query('name');
-        $vocationValidate = Vocations::query()->where('user_id' ,$user_id)->where('id' , $vocation_id)->first();
+        $vocationValidate = Vocations::query()->where('id' ,$id)->first();
 
         if (!$vocationValidate){
             $error = "Vocation Id Not same";
@@ -44,18 +39,18 @@ class VocationController extends Controller
             $vocationValidate->update([
                'name' => $name,
             ]);
-            return "success update vocation";
+            return redirect(env('APP_FE_URL') . '/');
         }
     }
 
-    public function delete($user_id , $vocation_id){
-        $vocationValidate = Vocations::query()->where('user_id' ,$user_id)->where('id' , $vocation_id)->first();
+    public function delete($id){
+        $vocationValidate = Vocations::query()->where('id' , $id)->first();
         if (!$vocationValidate){
             $error = "you already delete";
             return response()->json($error);
         } else{
             $vocationValidate->delete();
-            return "successfully delete";
+            return redirect(env('APP_FE_URL') . '/');
         }
     }
 

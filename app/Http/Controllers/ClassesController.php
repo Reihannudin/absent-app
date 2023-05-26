@@ -33,7 +33,6 @@ class ClassesController extends Controller
 
         $randomNumber = mt_rand(100000, 999999); // Generate a random number between 1000 and 9999
 
-
         if ($validateClass){
             $error = "name cannot be same";
             return response()->json($error);
@@ -46,7 +45,7 @@ class ClassesController extends Controller
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
-            return "successfully create class";
+            return redirect(env('APP_FE_URL') . '/');
         }
 
     }
@@ -83,6 +82,7 @@ class ClassesController extends Controller
         }
     }
 
+
     public function join(Request $request , $user_id){
 
         $code = $request->query('code');
@@ -94,7 +94,7 @@ class ClassesController extends Controller
             return response()->json($error);
         } else {
 
-            $pivotValidate = DB::table('pivot_students_to_classes')->where('student_id' , $user_id)->where('class_id' , $codeValidate->id)->first();
+            $pivotValidate = DB::table('histories')->where('student_id' , $user_id)->where('class_id' , $codeValidate->id)->first();
 
             if ($pivotValidate){
                 $error = "Student already join";

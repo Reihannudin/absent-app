@@ -24,14 +24,20 @@ Route::get('/logout', function () {
 
 Route::controller(\App\Http\Controllers\ClassesController::class)->group(function (){
     Route::get('/class/{user_id}' , 'index')->name('class.index');
-    Route::get('/class/{user_id}/{id}' , 'index')->name('class.index');
-    Route::get('/class/{user_id}/create' , 'create')->name('class.create');
+    Route::get('/class/{user_id}/{id}' , 'show')->name('class.show');
+    Route::get('/class/{user_id}/create/class' , 'create')->name('class.create');
     Route::get('/class/{user_id}/{class_id}/update' , 'update')->name('class.update');
     Route::get('/class/{user_id}/delete/{id}' , 'delete')->name('class.delete');
 
     Route::get('/student/{user_id}/join/class' , 'join')->name('class.join');
     Route::get('/student/{user_id}/out/class/{class_id}' , 'out')->name('class.unjoin');
+});
 
+Route::controller(\App\Http\Controllers\VocationController::class)->group(function (){
+    Route::get('/vocation/{user_id}' , 'index')->name('class.index');
+    Route::get('/vocation/create/{user_id}' , 'create')->name('class.index');
+    Route::get('/vocation/update/{id}' , 'update')->name('class.index');
+    Route::get('/vocation/delete/{id}' , 'delete')->name('class.index');
 });
 
 Route::controller(\App\Http\Controllers\AbsentController::class)->group(function (){
@@ -41,4 +47,16 @@ Route::controller(\App\Http\Controllers\AbsentController::class)->group(function
     Route::get('/teacher/{user_id}/delete/absent/{id}' , 'delete')->name('absent.delete');
 
     Route::get('/absent/{user_id}/post/{absent_id}/action'  , 'absents')->name('absent.action');
+});
+
+Route::controller(\App\Http\Controllers\HistoryController::class)->group(function (){
+    Route::get('/history/absent/{user_id}' , 'historyAbsence')->name('history.absence');
+    Route::get('/history/absent/{user_id}/{id}' , 'historyAbsenceById')->name('history.absence');
+
+});
+
+Route::controller(\App\Http\Controllers\ActivityController::class)->group(function (){
+    Route::get('/activity/recently/{user_id}' , 'activityRecently')->name('activity.recently');
+    Route::get('/activity/recently/{user_id}/{id}' , 'activityRecentlyById')->name('activity.recently');
+
 });
