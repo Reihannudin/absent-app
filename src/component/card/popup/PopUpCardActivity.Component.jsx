@@ -21,16 +21,15 @@ export const PopUpCardActivityComponent = ()=> {
             .then((activity => setActivity(activity)))
     } , [])
 
-    return(
-        <>
+    return (
+        <div>
             {activity.map((itemActivity) => {
-                console.log(itemActivity.absent);
                 return (
-                    <>
+                    <div key={itemActivity.id}>
                         {itemActivity.absent.length === 0 ? (
-                            <div  tabIndex="-1" style={{ background:"rgba(75,75,75,0.67)" }} className="fixed z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-                                <div className="absolute w-8/12  mx-auto h-full max-w-2xl md:h-auto" style={{ left:"33%"}}>
-                                    <div className="relative bg-white lg:w-8/12 top-16 rounded-lg shadow dark:bg-gray-700" style={{ height:"470px"}} >
+                            <div  tabIndex="-1" style={{ background:"rgba(75,75,75,0.67)" ,  minWidth:"560px" }} className="fixed z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+                                <div className="absolute lg:w-8/12 md:w-10/12 sm:w-11/12 w-full mx-auto h-full max-w-2xl md:h-auto  left-right-pop-up-card">
+                                    <div className="relative bg-white mx-auto lg:w-8/12 sm:w-8/12 w-9/12 top-16 rounded-lg shadow dark:bg-gray-700" style={{ height:"470px"}} >
                                         {activity.map((itemActivitySel) => {
                                             return (
                                                 <div key={itemActivitySel.id}>
@@ -45,7 +44,7 @@ export const PopUpCardActivityComponent = ()=> {
                                                             </button>
                                                         </div>
                                                         <div className="my-3" >
-                                                            <div className="flex lg:w-10/12 w-full my-4 mx-auto ">
+                                                            <div className="flex w-10/12 my-4 mx-auto ">
                                                                 <div className="text-left flex gap-1" style={{ fontSize:"14px"}}>
                                                                     <label>Date Created:</label>
                                                                     <p>{itemActivitySel.created_at}</p>
@@ -59,7 +58,9 @@ export const PopUpCardActivityComponent = ()=> {
                                                                         <label style={{ fontSize:"14px"}}>Code Class</label>
                                                                         {itemActivitySel.classes.map((itemClass) => {
                                                                             return(
-                                                                                <p  key={itemClass.id} style={{ fontSize:"16px"}}>{itemClass.code}</p>
+                                                                                <div key={itemClass.id}>
+                                                                                    <p   style={{ fontSize:"16px"}}>{itemClass.code}</p>
+                                                                                </div>
                                                                             )
                                                                         })}
                                                                     </div>
@@ -69,7 +70,9 @@ export const PopUpCardActivityComponent = ()=> {
                                                                             <label style={{ fontSize:"14px"}}>Class Name</label>
                                                                             {itemActivitySel.classes.map((itemClass) => {
                                                                                 return(
-                                                                                    <p  key={itemClass.id} style={{ fontSize:"18px"}}>{itemClass.name}</p>
+                                                                                    <div key={itemClass.id}>
+                                                                                        <p  style={{ fontSize:"18px"}}>{itemClass.name}</p>
+                                                                                    </div>
                                                                                 )
                                                                             })}
                                                                         </div>
@@ -112,9 +115,9 @@ export const PopUpCardActivityComponent = ()=> {
                             </div>
 
                         ) : (
-                            <div  tabIndex="-1" style={{ background:"rgba(75,75,75,0.67)" }} className="fixed z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-                                <div className="absolute w-8/12  mx-auto h-full max-w-2xl md:h-auto" style={{ left:"33%"}}>
-                                    <div className="relative bg-white lg:w-8/12 top-16 rounded-lg shadow dark:bg-gray-700" style={{ height:"470px"}} >
+                            <div   tabIndex="-1" style={{ background:"rgba(75,75,75,0.67)" ,  minWidth:"560px" }} className="fixed z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+                                <div className="absolute lg:w-8/12 md:w-10/12 sm:w-11/12 w-full mx-auto h-full max-w-2xl md:h-auto  left-right-pop-up-card">
+                                    <div className="relative bg-white mx-auto lg:w-8/12 sm:w-8/12 w-9/12 top-16 rounded-lg shadow dark:bg-gray-700" style={{ minHeight:"470px" , maxHeight:"490px"}} >
                                         {activity.map((itemActivitySel) => {
                                             return (
                                                 <div key={itemActivitySel.id}>
@@ -129,14 +132,14 @@ export const PopUpCardActivityComponent = ()=> {
                                                             </button>
                                                         </div>
                                                         <div className="my-3" >
-                                                            <div className="flex lg:w-10/12 w-full mt-4 mx-auto justify-between">
+                                                            <div className="flex w-10/12 mt-4 mx-auto justify-between">
                                                                 <div className="text-left flex gap-1" style={{ fontSize:"14px"}}>
                                                                     <label>Time Absent:</label>
                                                                     {itemActivitySel.absent.map((itemAbsent) => {
                                                                         return (
-                                                                            <>
-                                                                                <p>{itemAbsent.starttime} : {itemAbsent.endtime}</p>
-                                                                            </>
+                                                                            <div key={itemAbsent.id}>
+                                                                                <p >{itemAbsent.starttime} : {itemAbsent.endtime}</p>
+                                                                            </div>
                                                                         )
                                                                     })}
                                                                 </div>
@@ -147,9 +150,9 @@ export const PopUpCardActivityComponent = ()=> {
                                                                             <>
                                                                                 {itemAbsent.detail_absent.map((itemDetailAbsent) => {
                                                                                     return(
-                                                                                        <>
+                                                                                        <div key={itemDetailAbsent.id}>
                                                                                             <p style={{ fontSize:"15px"}}>{itemDetailAbsent.confirmation}</p>
-                                                                                        </>
+                                                                                        </div>
                                                                                     )
                                                                                 })}
                                                                             </>
@@ -161,9 +164,9 @@ export const PopUpCardActivityComponent = ()=> {
                                                                 <label>Date:</label>
                                                                 {itemActivitySel.absent.map((itemAbsent) => {
                                                                     return (
-                                                                        <>
-                                                                            <p>{itemAbsent.date} </p>
-                                                                        </>
+                                                                        <div key={itemAbsent.id}>
+                                                                            <p >{itemAbsent.date} </p>
+                                                                        </div>
                                                                     )
                                                                 })}
                                                             </div>
@@ -175,15 +178,15 @@ export const PopUpCardActivityComponent = ()=> {
                                                                             <label style={{ fontSize:"14px"}}>Action</label>
                                                                             {itemActivitySel.absent.map((itemAbsent) => {
                                                                                 return (
-                                                                                    <>
+                                                                                    <div key={itemAbsent.id}>
                                                                                         {itemAbsent.detail_absent.map((itemDetailAbsent) => {
                                                                                             return(
-                                                                                                <>
-                                                                                                    <p style={{ fontSize:"15px"}}>{itemDetailAbsent.action}</p>
-                                                                                                </>
+                                                                                                <div key={itemDetailAbsent.id}>
+                                                                                                    <p key={itemDetailAbsent.id} style={{ fontSize:"15px"}}>{itemDetailAbsent.action}</p>
+                                                                                                </div>
                                                                                             )
                                                                                         })}
-                                                                                    </>
+                                                                                    </div>
                                                                                 )
                                                                             })}
                                                                         </div>
@@ -191,15 +194,15 @@ export const PopUpCardActivityComponent = ()=> {
                                                                             <label  style={{ fontSize:"14px"}}>Reason</label>
                                                                             {itemActivitySel.absent.map((itemAbsent) => {
                                                                                 return (
-                                                                                    <>
+                                                                                    <div key={itemAbsent.id}>
                                                                                         {itemAbsent.detail_absent.map((itemDetailAbsent) => {
                                                                                             return(
-                                                                                                <>
+                                                                                                <div key={itemDetailAbsent.id}>
                                                                                                     <p style={{ fontSize:"15px"}}>{itemDetailAbsent.reason}</p>
-                                                                                                </>
+                                                                                                </div>
                                                                                             )
                                                                                         })}
-                                                                                    </>
+                                                                                    </div>
                                                                                 )
                                                                             })}
                                                                         </div>
@@ -212,7 +215,9 @@ export const PopUpCardActivityComponent = ()=> {
                                                                         <label style={{ fontSize:"14px"}}>Class</label>
                                                                         {itemActivitySel.classes.map((itemClass) => {
                                                                             return(
-                                                                                <p key={itemClass.id}  style={{ fontSize:"15px"}}>{itemClass.name}</p>
+                                                                                <div key={itemClass.id}>
+                                                                                    <p key={itemClass.id}  style={{ fontSize:"15px"}}>{itemClass.name}</p>
+                                                                                </div>
                                                                             )
                                                                         })}
                                                                     </div>
@@ -226,15 +231,15 @@ export const PopUpCardActivityComponent = ()=> {
                                                                         <label style={{ fontSize:"14px"}}>Time absent</label>
                                                                         {itemActivitySel.absent.map((itemAbsent) => {
                                                                             return (
-                                                                                <>
+                                                                                <div key={itemAbsent.id}>
                                                                                     {itemAbsent.detail_absent.map((itemDetailAbsent) => {
                                                                                         return(
-                                                                                            <>
+                                                                                            <div key={itemDetailAbsent.id}>
                                                                                                 <p style={{ fontSize:"15px"}}>{itemDetailAbsent.absent_time}</p>
-                                                                                            </>
+                                                                                            </div>
                                                                                         )
                                                                                     })}
-                                                                                </>
+                                                                                </div>
                                                                             )
                                                                         })}
                                                                     </div>
@@ -260,9 +265,13 @@ export const PopUpCardActivityComponent = ()=> {
                                 </div>
                             </div>
                         )}
-                    </>
+                    </div>
                 );
             })}
-        </>
-    )
+        </div>
+    );
+
+
 }
+
+

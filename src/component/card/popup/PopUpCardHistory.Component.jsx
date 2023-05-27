@@ -23,9 +23,9 @@ export const PopUpCardHistoryComponent = () => {
 
     return(
         <>
-            <div  tabIndex="-1" style={{ background:"rgba(75,75,75,0.67)" }} className="fixed z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-                <div className="absolute w-8/12  mx-auto h-full max-w-2xl md:h-auto" style={{ left:"33%"}}>
-                    <div className="relative bg-white lg:w-8/12 top-16 rounded-lg shadow dark:bg-gray-700" style={{ height:"470px"}} >
+            <div  tabIndex="-1" style={{ background:"rgba(75,75,75,0.67)" , minWidth:"560px" }} className="fixed z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+                <div className="absolute lg:w-8/12 md:w-10/12 sm:w-11/12 w-full   mx-auto h-full max-w-2xl md:h-auto left-right-pop-up-card" >
+                    <div className="relative bg-white lg:w-8/12 sm:w-8/12 w-9/12 mx-auto top-16  rounded-lg shadow dark:bg-gray-700" style={{ minHeight:"470px" , maxHeight:"480px"}} >
                         {historySel.map((itemHistorySel) => {
                             return (
                                 <div key={itemHistorySel.id}>
@@ -40,7 +40,7 @@ export const PopUpCardHistoryComponent = () => {
                                             </button>
                                         </div>
                                         <div className="my-3" >
-                                            <div className="flex lg:w-10/12 w-full my-4 mx-auto justify-between">
+                                            <div className="flex w-10/12 my-4 mx-auto justify-between">
                                                 <div className="text-left flex gap-1" style={{ fontSize:"14px"}}>
                                                     <label>Time Stamp:</label>
                                                     <p>{itemHistorySel.absent_starttime} : {itemHistorySel.absent_endtime}</p>

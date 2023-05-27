@@ -12,15 +12,24 @@
   font-family: 'Rubik', sans-serif;
 }
 
-.left-right-pop-up{
-  left:35% ;
-  right:50%;
-}
+  .left-right-pop-up{
+    left:35% ;
+    right:50%;
+  }
+
+  .left-right-pop-up-card{
+    left: 25%;
+  }
+
 
 @media screen and (max-width: 1200px) {
   .left-right-pop-up{
     left:30% ;
     right:50%;
+  }
+
+  .left-right-pop-up-card{
+    left: 20%;
   }
 
 }
@@ -31,7 +40,25 @@
     right:50%;
   }
 
+  .left-right-pop-up-card{
+    left: 10%;
+    right:50%;
+
+  }
 }
+
+@media screen and (max-width: 760px) {
+
+
+  .left-right-pop-up-card{
+    left: 7%;
+    right:50%;
+
+  }
+
+}
+
+
 
 @media screen and (max-width: 640px) {
   .left-right-pop-up{
@@ -39,7 +66,22 @@
     right:50%;
   }
 
+
+  .left-right-pop-up-card{
+    left: 3%;
+    right:50%;
+
+  }
+
 }
+
+@media screen and (max-width: 550px) {
+  .left-right-pop-up-card{
+    left: 0%;
+    right: 300%;
+  }
+}
+
 
 
 .weverse-color{

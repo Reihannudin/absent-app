@@ -18,7 +18,7 @@ import {PopUpCardActivityComponent} from "./component/card/popup/PopUpCardActivi
 
 function App() {
   return (
-    <div className="App" style={{ minWidth:"530px"}}>
+    <div className="App" style={{ minWidth:"560px"}}>
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/test/:test" element={<Test />} />
