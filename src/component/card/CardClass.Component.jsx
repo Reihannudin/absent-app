@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-export const CardClassComponent = () => {
+export const CardClassComponent = (props) => {
     return(
         <>
             <div className="bg-white shadow border-radius-8" style={{ maxWidth:"270px"}}>
@@ -9,11 +9,15 @@ export const CardClassComponent = () => {
                         <img className="w-full h-full border-radius-8" src="/assets/bg-absence.svg" />
                     </div>
                     <div className="block text-left mx-4 py-2 gap-4">
-                        <h2 className="font-normal my-0 py-0" style={{ fontSize:"20px"}}>Title</h2>
-                        <h3 className="font-thin mt-0 mb-2 py-0" style={{ fontSize:"16px"}}>Teacher</h3>
+                        <h2 className="font-normal my-0 py-0" style={{ fontSize:"18px"}}>{props.title}</h2>
+                        <h3 className="font-thin mt-0 mb-2 py-0" style={{ fontSize:"14px"}}>{props.teacher}</h3>
                         <div className="border-t pt-2 flex justify-between">
                             <div className="my-1">
-                                <p style={{ fontSize:"12px"}}>there is 1 should be done</p>
+                                {props.length === undefined ? (
+                                    <p style={{ fontSize:"12px"}}>there is no absent</p>
+                                ) : (
+                                    <p style={{ fontSize:"12px"}}>there is {props.length} absent</p>
+                                )}
                             </div>
                             <button className="mt-1 py-0.5 mb-1 text-black border-radius-8">
                                 <Link to={`/class/detail/:id`}>

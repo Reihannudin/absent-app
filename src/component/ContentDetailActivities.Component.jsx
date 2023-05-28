@@ -2,7 +2,7 @@ import {CardActivityComponent} from "./card/CardActivity.Component";
 import {Link} from "react-router-dom";
 
 
-export const ContentDetailActivitiesComponent = () => {
+export const ContentDetailActivitiesComponent = (props) => {
 
     const popUpDetail = () => {
         const popUp = document.getElementById('pop_up_detail');
@@ -25,17 +25,22 @@ export const ContentDetailActivitiesComponent = () => {
                                 <div className="w-full pb-3">
                                     <div className="flex justify-between">
                                         <div>
+                                            <h1 className="my-0 py-0" style={{ fontSize:"24px"}}>{props.title}</h1>
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <div>
                                             <label className="my-0 py-0"  style={{ fontSize:"14px"}}>Date</label>
-                                            <p className="my-0 py-0" style={{ fontSize:"15px"}}>Thurstday, MAR 26 2022</p>
+                                            <p className="my-0 py-0" style={{ fontSize:"15px"}}>{props.duedate}</p>
                                         </div>
                                         <div>
                                             <label className="my-0 py-0"  style={{ fontSize:"14px"}}>Teacher</label>
-                                            <p className="my-0 py-0" style={{ fontSize:"15px"}}>Eko Kurniawan Khannedy</p>
+                                            <p className="my-0 py-0" style={{ fontSize:"15px"}}>{props.teacher}</p>
                                         </div>
                                     </div>
                                     <div>
                                         <label className="my-0 py-0"  style={{ fontSize:"14px"}}>Time</label>
-                                        <p className="my-0 py-0" style={{ fontSize:"15px"}}>06:00 - 07:30</p>
+                                        <p className="my-0 py-0" style={{ fontSize:"15px"}}>{props.starttime} - {props.endtime}</p>
                                     </div>
                                 </div>
                                 <hr />

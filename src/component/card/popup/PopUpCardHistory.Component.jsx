@@ -9,7 +9,6 @@ export const PopUpCardHistoryComponent = () => {
     };
 
     const { id } = useParams();
-    console.log(id);
 
     const user = JSON.parse(localStorage.getItem('whoLogin'));
 
