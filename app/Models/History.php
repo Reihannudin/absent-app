@@ -27,4 +27,9 @@ class History extends Model
         return $this->belongsTo(Classes::class);
     }
 
+    public function vocation(){
+        return $this->belongsTo(Vocations::class);
+    }
+
+
 }

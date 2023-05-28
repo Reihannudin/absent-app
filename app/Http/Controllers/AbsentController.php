@@ -22,6 +22,90 @@ class AbsentController extends Controller
         return response()->json($absent);
     }
 
+    public function absentShow($absent_id){
+
+//        $studentValidations  = DB::table('pivot_students_to_absents')->where('absent_id' , $absent_id)->select('absents_id')->get();
+
+//        $absentResources = collect();
+
+//        foreach ($studentValidations as $studentValidate){
+            $absent = AbsentResources::collection(
+                Absents::query()->where('id' , $absent_id)->get()
+            );
+//            if ($absent){
+//                $absentResource = new AbsentResources($absent);
+//                $absentResources->push($absentResource);
+//            }
+//        }
+
+        return response()->json($absent);
+    }
+
+    public function studentAbsent($student_id){
+
+        $studentValidations  = DB::table('pivot_students_to_absents')->where('student_id' , $student_id)->select('absents_id')->get();
+
+        $absentResources = collect();
+
+        foreach ($studentValidations as $studentValidate){
+            $absent = Absents::query()->find($studentValidate->absents_id);
+            if ($absent){
+                $absentResource = new AbsentResources($absent);
+                $absentResources->push($absentResource);
+            }
+        }
+
+        return response()->json($absentResources);
+    }
+
+    public function studentAbsentShow($student_id , $absent_id){
+
+        $studentValidations  = DB::table('pivot_students_to_absents')->where('student_id' , $student_id)->where('absents_id' , $absent_id)->select('absents_id')->get();
+
+        $absentResources = collect();
+
+        foreach ($studentValidations as $studentValidate){
+            $absent = Absents::query()->find($studentValidate->absents_id);
+            if ($absent){
+                $absentResource = new AbsentResources($absent);
+                $absentResources->push($absentResource);
+            }
+        }
+
+        return response()->json($absentResources);
+    }
+
+    public function studentAbsentStatus($student_id, $status)
+    {
+        $studentValidations = DB::table('pivot_students_to_absents')
+            ->where('student_id', $student_id)
+            ->select('absents_id')
+            ->get();
+
+        $absentResources = collect();
+
+        foreach ($studentValidations as $studentValidation) {
+            $absent = Absents::query()
+                ->where('id', $studentValidation->absents_id)
+                ->where('status', $status)
+                ->first();
+
+            if ($absent) {
+                $absentResource = new AbsentResources($absent);
+                $absentResources->push($absentResource);
+            }
+        }
+
+        return response()->json($absentResources);
+    }
+
+    public function absentCreatedByStudent($student_id ){
+        $absent = AbsentResources::collection(
+            Absents::query()->where('teacher_id' , $student_id)->get()
+        );
+        return response()->json($absent);
+    }
+
     public function show($id){
         $absent = AbsentResources::collection(
             Absents::query()->where('id' , $id)->get()

@@ -20,7 +20,7 @@ class HistoryController extends Controller
     public function historyAbsenceById($user_id , $id){
 
         $absent = HistoryResource::collection(
-            History::query()->where('student_id' , $user_id)->where('id' , $id)->get()
+            History::query()->where('student_id' , $user_id)->where('absent_id' , $id)->get()
         );
         return response()->json($absent);
     }

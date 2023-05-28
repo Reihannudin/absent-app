@@ -27,8 +27,8 @@ class HistoryResource extends JsonResource
             "absent_endtime" => $this->absent->endtime,
             "absent_date" => $this->absent->date,
             "class_name" => $this->classes->name,
+            "vocation" => $this->vocation->name,
             "teacher" => $this->teacher->name,
-
         ];
     }
 }

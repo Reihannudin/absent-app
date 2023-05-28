@@ -15,6 +15,11 @@ class Absents extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function student(){
+        return $this->belongsToMany(User::class , 'histories' , 'absent_id' , 'student_id');
+    }
+
+
     public function classes(){
         return $this->belongsTo(Classes::class);
     }

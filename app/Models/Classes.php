@@ -20,7 +20,7 @@ class Classes extends Model
     }
 
     public function student(){
-        return $this->belongsToMany(User::class , 'pivot_students_to_classes' , 'class_id' , 'student_id')->select('name');
+        return $this->belongsToMany(User::class , 'pivot_students_to_classes' , 'class_id' , 'student_id');
     }
 
     public function absent(){

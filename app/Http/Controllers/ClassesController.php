@@ -17,6 +17,86 @@ class ClassesController extends Controller
         return response()->json($class);
     }
 
+    public function studentClassById($user_id , $class_id){
+
+        $classValidations = DB::table('pivot_students_to_classes')
+            ->where('student_id' , $user_id)
+            ->select('class_id')
+            ->get();
+
+        $classResources = collect();
+
+        foreach ($classValidations as $classValidation){
+            $class = Classes::query()
+                ->where('id' , $class_id)
+                ->where('id' , $classValidation->class_id)
+                ->first();
+
+            if ($class){
+                $classResource = new ClassResources($class);
+                $classResources->push($classResource);
+            }
+
+            return response()->json($classResources);
+        }
+    }
+
+    public function studentClass($user_id){
+
+        $classValidations = DB::table('pivot_students_to_classes')
+            ->where('student_id' , $user_id)
+            ->select('class_id')
+            ->get();
+
+        $classResources = collect();
+
+        foreach ($classValidations as $classValidation){
+            $class = Classes::query()
+                ->where('id' , $classValidation->class_id)
+                ->first();
+
+            if ($class){
+                $classResource = new ClassResources($class);
+                $classResources->push($classResource);
+            }
+
+        }
+        return response()->json($classResources);
+
+    }
+
+
+    public function studentClassAbsent($user_id, $class_id, $absent_id)
+    {
+        $classValidations = DB::table('pivot_students_to_classes')
+            ->where('student_id', $user_id)
+            ->select('class_id')
+            ->get();
+
+        $classResources = collect();
+
+        foreach ($classValidations as $classValidation) {
+            $class = Classes::query()
+                ->where('id', $class_id)
+                ->where('id', $classValidation->class_id)
+                ->first();
+
+            if ($class) {
+                $classResource = new ClassResources($class);
+                $classResources->push($classResource);
+            }
+        }
+
+        return response()->json($classResources);
+    }
+
+    public function showId($user_id , $id){
+        $classs = ClassResources::collection(
+            Classes::query()->where('id' , $id)->get()
+        );
+        return response()->json($classs);
+    }
+
     public function show($id){
         $classs = ClassResources::collection(
             Classes::query()->where('id' , $id)->get()

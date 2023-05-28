@@ -17,15 +17,15 @@ class AbsentResources extends JsonResource
         return [
             "id" => $this->id,
             "title" => $this->title,
+            "status" => $this->status,
             "start_time" => $this->starttime,
             "end_time" => $this->endtime,
             "due_date" => $this->date,
             "teacher" => $this->teacher->name,
+            "class_id" => $this->classes->id,
             "class" => $this->classes->name,
             "vocation" => $this->vocation->name,
-//            "students" => [
-//                $this->students
-//            ],
+            "students" => $this->student,
         ];
     }
 }
