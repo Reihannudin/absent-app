@@ -48,8 +48,9 @@ Route::controller(\App\Http\Controllers\VocationController::class)->group(functi
 
 Route::controller(\App\Http\Controllers\AbsentController::class)->group(function (){
     Route::get('/teacher/{user_id}/absent' , 'indexTeacher')->name('absent.index.teacher');
+    Route::get('/teacher/{user_id}/show/absent/{id}' , 'show')->name('absent.index.teacher');
     Route::get('/teacher/{user_id}/create/absent' , 'create')->name('absent.create');
-    Route::get('/teacher/{user_id}/update/absent/{id}' , 'update')->name('absent.update');
+    Route::get('/teacher/update/absent/{id}' , 'update')->name('absent.update');
     Route::get('/teacher/{user_id}/delete/absent/{id}' , 'delete')->name('absent.delete');
 
 //    Route::get('/absent/{user_id}' ,  'show')->name('student.show');

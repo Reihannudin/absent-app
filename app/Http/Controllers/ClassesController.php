@@ -216,7 +216,6 @@ class ClassesController extends Controller
                     'activities_id' => $activities[0]->id,
                 ]);
 
-
                 return redirect(env('APP_FE_URL') . '/class');
             }
         }

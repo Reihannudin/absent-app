@@ -19,6 +19,7 @@ class ClassResources extends JsonResource
             "name" => $this->name,
             "code" => $this->code,
             "teacher" => $this->teacher->name,
+            "vocation_id" => $this->vocation->id,
             "vocation" => $this->vocation->name,
             "absents" => $this->absent,
             "students" => $this->student

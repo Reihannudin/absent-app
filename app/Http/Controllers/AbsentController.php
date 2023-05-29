@@ -115,9 +115,10 @@ class AbsentController extends Controller
         return response()->json($absent);
     }
 
-    public function show($id){
+    public function show($user_id , $id){
+
         $absent = AbsentResources::collection(
-            Absents::query()->where('id' , $id)->get()
+            Absents::query()->where('id'  , $id)->get()
         );
         return response()->json($absent);
     }
@@ -142,36 +143,38 @@ class AbsentController extends Controller
                'starttime' => $starttime,
                 'endtime' => $endtime,
                'date' => $date,
+                'status' => "ongoing",
                 'teacher_id' => $user_id,
                 'classes_id' => $classes_id,
                 'vocation_id' => $vocation_id,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
-            return "Successfully create Absent";
+            return redirect(env('APP_FE_URL') . '/my/class/detail/' .  $classes_id);
+
         }
 
     }
 
-    public function update(Request $request , $user_id , $id ){
+    public function update(Request $request ,$id ){
         $title = $request->query('title');
         $starttime = $request->query('starttime');
         $endtime = $request->query('endtime');
         $date = $request->query('date');
 
-        $validationAbsent = Absents::query()->where('teacher_id' , $user_id)->where('id' , $id)->first();
+        $validationAbsent = Absents::query()->where('id' , $id)->get();
 
         if (!$validationAbsent){
             $error = "id is not same";
             return response()->json($error);
         } else {
-            Absents::query()->update([
+            Absents::query()->where('id' , $id)->update([
                'title' => $title,
                 'starttime' => $starttime,
                 'endtime' => $endtime,
                 'date' => $date,
             ]);
-            return "successfully update absent";
+            return redirect(env('APP_FE_URL') . '/class#myclass');
         }
 
     }
@@ -183,7 +186,7 @@ class AbsentController extends Controller
             return response()->json($error);
         } else{
             $absentValidate->delete();
-            return "successfully delete";
+            return redirect(env('APP_FE_URL') . '/class#myclass');
         }
     }
 
