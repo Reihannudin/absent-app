@@ -18,24 +18,20 @@ class Activities extends Model
     }
 
     public function absent(){
-        return $this->belongsToMany(Absents::class, 'pivot_user_activity');
+        return $this->belongsToMany(Absents::class , 'pivot_user_activity' );
     }
 
     public function teacher(){
         return $this->belongsTo(User::class);
     }
-
     public function vocation(){
         return $this->belongsTo(Vocations::class);
     }
 
-
     public function classes()
     {
-        return $this->belongsToMany(Classes::class, 'pivot_user_activity');
+        return $this->belongsToMany(Classes::class , 'pivot_user_activity');
     }
-
-
 
     public function history(){
         return $this->belongsToMany(History::class, 'pivot_user_activity');

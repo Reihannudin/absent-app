@@ -28,13 +28,14 @@ class ActivityRecenliesResource extends JsonResource
                     'detail_absent' => $this->history,
                 ];
             }) : null,
-            'classes' => $this->classes ? $this->classes->map(function ($class) {
-                return [
-                    'id' => $class->id,
-                    'name' => $class->name,
-                    'code' => $class->code,
-                ];
-            }) : null,
+            'classes' => $this->classes,
+//            'classes' => $this->classes ? $this->classes->map(function ($class) {
+//                return [
+//                    'id' => $class->id,
+//                    'name' => $class->name,
+//                    'code' => $class->code,
+//                ];
+//            }) : null,
             'vocational' => $this->vocation->name,
             'teacher' => $this->teacher->name,
             'created_at' => $this->teacher->created_at,

@@ -41,6 +41,15 @@ class AbsentController extends Controller
         return response()->json($absent);
     }
 
+    public function myAbsentShow( $user_id ,$absent_id){
+
+        $absent = AbsentResources::collection(
+            Absents::query()->where('id' , $absent_id)->where('teacher_id' , $user_id)->get()
+        );
+
+        return response()->json($absent);
+    }
+
     public function studentAbsent($student_id){
 
         $studentValidations  = DB::table('pivot_students_to_absents')->where('student_id' , $student_id)->select('absents_id')->get();

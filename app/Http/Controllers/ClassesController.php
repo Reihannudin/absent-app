@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ClassResources;
+use App\Models\Activities;
 use App\Models\Classes;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -29,7 +30,6 @@ class ClassesController extends Controller
         foreach ($classValidations as $classValidation){
             $class = Classes::query()
                 ->where('id' , $class_id)
-                ->where('id' , $classValidation->class_id)
                 ->first();
 
             if ($class){
@@ -174,7 +174,7 @@ class ClassesController extends Controller
             return response()->json($error);
         } else {
 
-            $pivotValidate = DB::table('histories')->where('student_id' , $user_id)->where('class_id' , $codeValidate->id)->first();
+            $pivotValidate = DB::table('pivot_students_to_classes')->where('student_id' , $user_id)->where('class_id' , $codeValidate->id)->first();
 
             if ($pivotValidate){
                 $error = "Student already join";
@@ -186,7 +186,38 @@ class ClassesController extends Controller
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ]);
-                return "successfull join class";
+
+                $class = Classes::query()->where('id' , $codeValidate->id)->first();
+                $vocation_id = $class->vocation_id;
+                $teacher_id = $class->teacher_id;
+
+                DB::table('pivot_user_activity')->insert([
+                    'user_id' => $user_id,
+                    'classes_id' => $class->id,
+                    'vocation_id' => $vocation_id,
+                    'teacher_id' =>$teacher_id,
+                    'created_at' => Carbon::now(),
+                ]);
+
+                $activity =  DB::table('pivot_user_activity')->where('user_id' , $user_id)->where('classes_id' , $class->id)->get();
+
+                Activities::query()->create([
+                    'user_id' => $user_id,
+                    'activities_id' => $activity[0]->id,
+                    'classes_id' => $class->id,
+                    'vocation_id' => $vocation_id,
+                    'teacher_id' =>$teacher_id,
+                    'created_at' => Carbon::now(),
+                ]);
+
+                $activities = Activities::query()->where('user_id' , $user_id)->where('classes_id' , $class->id)->get();
+
+                DB::table('pivot_user_activity')->where('id' , $activity[0]->id)->update([
+                    'activities_id' => $activities[0]->id,
+                ]);
+
+
+                return redirect(env('APP_FE_URL') . '/class');
             }
         }
 

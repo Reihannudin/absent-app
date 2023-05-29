@@ -52,11 +52,12 @@ Route::controller(\App\Http\Controllers\AbsentController::class)->group(function
     Route::get('/teacher/{user_id}/update/absent/{id}' , 'update')->name('absent.update');
     Route::get('/teacher/{user_id}/delete/absent/{id}' , 'delete')->name('absent.delete');
 
-    Route::get('/absent/{user_id}' ,  'show')->name('student.show');
+//    Route::get('/absent/{user_id}' ,  'show')->name('student.show');
 
     Route::get('/student/{id}/absent/{absent_id}' , 'studentAbsentShow')->name('student.absent');
     Route::get('/student/absent/{student_id}' , 'studentAbsent')->name('student.absent');
     Route::get('/absent/{absent_id}' , 'absentShow')->name('student.absent');
+    Route::get('/my/{user_id}/absent/{absent_id}' , 'myAbsentShow')->name('student.absent');
     Route::get('/student/absent/{student_id}/status/{status}' , 'studentAbsentStatus')->name('student.absent');
     Route::get('/absent/created/by/student/{student_id}' , 'absentCreatedByStudent')->name('student.absent');
 
