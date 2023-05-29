@@ -24,7 +24,7 @@ export const HistoryListComponent = () => {
                         <h3 style={{ fontSize:"24px"}}>History</h3>
                     </div>
                     <div className="w-full my-4 mx-auto ">
-                        {user === null ?(
+                        {history.length === 0 ?(
                             <div className="gap-4 text-center mx-6" style={{ overflowX: "auto" }}>
                                 <div className="mx-auto my-7">
                                     <h2 style={{  fontSize:"18px", color:"#716f6f"}}>Kamu tidak punya history absent terakhir</h2>

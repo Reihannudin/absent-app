@@ -20,7 +20,7 @@ export const CardClassComponent = (props) => {
                                 )}
                             </div>
                             <button className="mt-1 py-0.5 mb-1 text-black border-radius-8">
-                                <Link to={`/class/detail/:id`}>
+                                <Link to={`/class/detail/${props.id}`}>
                                     <div style={{ height:"18px"}}>
                                         <img src="/assets/arrows-right.svg" className="w-full h-full" />
                                     </div>

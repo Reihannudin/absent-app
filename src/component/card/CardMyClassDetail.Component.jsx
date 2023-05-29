@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 
 
-export const CardMyClassDetailComponent = () => {
+export const CardMyClassDetailComponent = (props) => {
 
     const popUpDetail = () => {
         const popUp = document.getElementById('pop_up_detail');
@@ -21,11 +21,11 @@ export const CardMyClassDetailComponent = () => {
                     <div className="w-full">
                         <img className="w-full h-full border-radius-8" src="/assets/bg-absence.svg" />
                     </div>
-                    <div className="block text-left mx-4 py-2 gap-4">
+                    <div className="block text-left mx-4 py-1 gap-4">
                         <div className="relative">
                             <div className="flex justify-between">
-                                <h2 className="font-normal my-1 py-0" style={{ fontSize:"20px"}}>Title</h2>
-                                <div className="my-2" style={{ height:"20px"}}>
+                                <h2 className="font-normal my-1 py-0" style={{ fontSize:"18px"}}>{props.title}</h2>
+                                <div className="mt-2" style={{ height:"20px"}}>
                                     <button onClick={popUpDetail} style={{ height:"20px"}}>
                                         <img className="w-full h-full" src="/assets/menu-icon.svg"/>
                                     </button>
@@ -33,15 +33,15 @@ export const CardMyClassDetailComponent = () => {
                             </div>
 
                         </div>
-                         <div className="my-1">
-                            <p className="my-auto py-0" style={{ fontSize:"16px"}}>Time</p>
+                         <div className="my-1 pb-2">
+                            <p className="my-auto py-0" style={{ fontSize:"12px"}}>{props.deadline} : {props.date}</p>
                         </div>
                         <div className="border-t pt-2 flex justify-between">
                             <div className="my-1">
-                                <h3 className="my-auto py-0" style={{ fontSize:"14px"}}>status</h3>
+                                <h3 className="my-auto py-0" style={{ fontSize:"14px"}}>{props.status}</h3>
                             </div>
                             <button className="mt-1 py-0.5 mb-1 text-black border-radius-8">
-                                <Link to={`/absent/detail/:id`}>
+                                <Link to={`/my/absent/detail/${props.id}`}>
                                     <div style={{ height:"18px"}}>
                                         <img src="/assets/arrows-right.svg" className="w-full h-full" />
                                     </div>

@@ -11,12 +11,6 @@ function DetailClasses() {
     const {id } = useParams()
     const user = JSON.parse(localStorage.getItem('whoLogin'));
 
-    const [classes , setClasses] = useState([]);
-    useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/student/${user.id}/class`)
-            .then((response) => response.json())
-            .then((classes => setClasses(classes)))
-    } , [])
 
     const [classesOne , setClassesOne] = useState([]);
     useEffect(() => {
@@ -106,30 +100,38 @@ function DetailClasses() {
                     <div id="ongoing" className="p-4">
                         <div className="w-full py-5">
                             <div>
-                                    {classes.map((itemClass) => {
+                                    {classesOne.map((itemClass) => {
                                         return(
                                             <>
                                                 <div>
-                                                    <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
+                                                    {itemClass.absents.length === 0 ? (
+                                                        <div>
+                                                            <div className="my-24">
+                                                                <h2>Tidak ada data</h2>
+                                                            </div>
+                                                        </div>
+                                                        ):(
+                                                        <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
 
-                                                    {itemClass.absents.map((itemClassAbsent) => {
-                                                        return(
-                                                            <>
-                                                                {itemClassAbsent.status === "ongoing" ? (
-                                                                    <div >
-                                                                        <CardClassDetailComponent title={itemClassAbsent.title} status={itemClassAbsent.status} deadline={itemClassAbsent.endtime} date={itemClassAbsent.date}  />
-                                                                    </div>
-                                                                ) : (
-                                                                    <div >
+                                                            {itemClass.absents.map((itemClassAbsent) => {
+                                                                return(
+                                                                    <>
+                                                                        {itemClassAbsent.status === "ongoing" ? (
+                                                                            <div >
+                                                                                <CardClassDetailComponent title={itemClassAbsent.title} status={itemClassAbsent.status} deadline={itemClassAbsent.endtime} date={itemClassAbsent.date}  />
+                                                                            </div>
+                                                                        ) : (
+                                                                            <div >
 
-                                                                    </div>
-                                                                )}
+                                                                            </div>
+                                                                        )}
 
-                                                            </>
-                                                        )
-                                                    })}
-                                                    </ul>
-
+                                                                    </>
+                                                                )
+                                                            })}
+                                                        </ul>
+                                                    )
+                                                    }
                                                 </div>
                                             </>
                                         )
@@ -140,23 +142,30 @@ function DetailClasses() {
                     <div id="history" className="hidden p-4">
                         <div className="w-full py-5">
                             <div>
-                                {classes.map((itemClass) => {
+                                {classesOne.map((itemClass) => {
                                     return(
                                         <>
                                             <div>
-                                                <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
+                                                {itemClass.absents.length === 0 ? (
+                                                    <div>
+                                                        <div className="my-24">
+                                                            <h2>Tidak ada data</h2>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
 
-                                                    {itemClass.absents.map((itemClassAbsent) => {
-                                                        return(
-                                                            <>
-                                                                <div >
-                                                                    <CardClassDetailComponent title={itemClassAbsent.title} status={itemClassAbsent.status} deadline={itemClassAbsent.endtime} date={itemClassAbsent.date}  />
-                                                                </div>
-                                                            </>
-                                                        )
-                                                    })}
-                                                </ul>
-
+                                                        {itemClass.absents.map((itemClassAbsent) => {
+                                                            return(
+                                                                <>
+                                                                    <div >
+                                                                        <CardClassDetailComponent title={itemClassAbsent.title} status={itemClassAbsent.status} deadline={itemClassAbsent.endtime} date={itemClassAbsent.date}  />
+                                                                    </div>
+                                                                </>
+                                                            )
+                                                        })}
+                                                    </ul>
+                                                )}
                                             </div>
                                         </>
                                     )

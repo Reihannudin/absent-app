@@ -14,6 +14,8 @@ export const RecentlyListComponent = () => {
             .then((activity => setActivity(activity)))
     } , [])
 
+    console.log(activity)
+
     return(
         <>
             <div className="w-full py-5  mt-5 lg:mb-10 md:mb-5 bg-white">
@@ -29,7 +31,7 @@ export const RecentlyListComponent = () => {
                         </div>
                     </div>
                     <div className="w-full my-4 mx-auto">
-                        {user === null ?(
+                        {activity.length === 0  ?(
                             <div className="gap-4 text-center mx-6" style={{ overflowX: "auto" }}>
                                <div className="mx-auto my-7">
                                    <h2 style={{  fontSize:"18px", color:"#716f6f"}}>Kamu tidak punya aktivitas terakhir</h2>
@@ -44,7 +46,7 @@ export const RecentlyListComponent = () => {
                         ) : (
                             <div className="flex gap-4 overscroll-x-auto mx-6" style={{ overflowX: "auto" }}>
                                 {activity.map((itemActivity) => (
-                                    <div  key={itemActivity.id} className="bg-white shadow border-radius-8" style={{ minWidth:"200px" , maxWidth:"200px", width:"200px" , height:"250px"}}>
+                                    <div  key={itemActivity.id} className="bg-white shadow border-radius-8" style={{ minWidth:"200px" , maxWidth:"200px", width:"200px" , height:"230px"}}>
                                         <div className="w-full h-full">
                                             <div className="w-full">
                                                 <img className="w-full h-full border-radius-8" src="/assets/bg-absence.svg" />
@@ -70,7 +72,7 @@ export const RecentlyListComponent = () => {
                                                             </div>
                                                         ))}
                                                     </div>
-                                                    <div className="absolute w-full top-20">
+                                                    <div className="absolute w-full top-16">
                                                         <a  href={`/activities/${itemActivity.id}`}>
                                                             <button className=" w-full weverse-background-btn mt-3 py-0.5 mb-1 text-white " style={{ borderRadius:"4px"}}>Detail</button>
                                                         </a>

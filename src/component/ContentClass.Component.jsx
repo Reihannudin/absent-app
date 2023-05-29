@@ -3,9 +3,12 @@ import {CardActivityComponent} from "./card/CardActivity.Component";
 import {CardClassComponent} from "./card/CardClass.Component";
 import {CardClassDetailComponent} from "./card/CardClassDetail.Component";
 import {CardPeopleComponent} from "./card/CardPeople.Component";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {CardMyClassComponent} from "./card/CardMyClass.Component";
 
 export const ContentClassComponent = () => {
+
+    const {id} = useParams();
 
     const navigate = useNavigate();
 
@@ -49,7 +52,6 @@ export const ContentClassComponent = () => {
     const user = JSON.parse(localStorage.getItem('whoLogin'));
 
     const [classAll, setClassAll] = useState([]);
-
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/student/${user.id}/class`)
             .then((response) => response.json())
@@ -63,6 +65,8 @@ export const ContentClassComponent = () => {
             .then((response) => response.json())
             .then((myClass  => setMyClass(myClass)))
     } , [])
+
+    console.log(myClass)
 
     return(
         <>
@@ -107,10 +111,11 @@ export const ContentClassComponent = () => {
                                         ) : (
                                                 <ul className="grid gap-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
                                                     {classAll.map((itemClass) => {
+                                                        const classLength = itemClass.absents.length
                                                         return(
                                                             <>
                                                                 <div key={itemClass.id}>
-                                                                    <CardClassComponent title={itemClass.name} teacher={itemClass.teacher} />
+                                                                    <CardClassComponent  length={classLength} id={itemClass.id} title={itemClass.name} teacher={itemClass.teacher} />
                                                                 </div>
                                                             </>
                                                         )
@@ -138,7 +143,7 @@ export const ContentClassComponent = () => {
                                                 return (
                                                     <>
                                                         <div>
-                                                            <CardClassComponent length={myClass.length} title={itemMyClass.name} teacher={itemMyClass.teacher} />
+                                                            <CardMyClassComponent id={itemMyClass.id} length={itemMyClass.length} title={itemMyClass.name} teacher={itemMyClass.teacher} />
                                                         </div>
                                                     </>
                                                 )

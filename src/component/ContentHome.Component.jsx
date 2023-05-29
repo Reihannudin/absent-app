@@ -40,6 +40,7 @@ export const ContentHomeComponent = () => {
     const onChangeVocation = (event) => {
         const vocation = event.target.value
         setVocation(vocation)
+        console.log(vocation)
     }
 
     const [vocations , setVocations] = useState([]);
@@ -62,6 +63,7 @@ export const ContentHomeComponent = () => {
         const classes = event.target.value
         setClasses(classes)
     }
+
 
 
     return(
@@ -168,7 +170,7 @@ export const ContentHomeComponent = () => {
             <div id="pop_up_create_class" tabIndex="-1"  style={{ display:"none", minWidth:"588px" }} className="fixed top-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 md:h-full h-full">
                 <div className="relative w-full h-full" style={{background:"rgba(75,75,75,0.67)"}}>
                     <div className="absolute xl:w-6/12 lg:w-9/12 w-10/12  mx-auto h-full  max-w-2xl md:h-auto left-right-pop-up"  >
-                        <div className="relative  mt-5 bg-white sm:w-8/12 w-9/12  top-16 rounded-lg shadow dark:bg-gray-700" style={{ height:"385px"}} >
+                        <div className="relative  mt-5 bg-white sm:w-8/12 w-9/12  top-16 rounded-lg shadow dark:bg-gray-700" style={{ height:"400px"}} >
                             <div className="flex items-start justify-end pt-7 pb-5 px-4 border-b rounded-t dark:border-gray-600">
                                 <h3 className="text-lg my-1 w-full ms-5 font-normal text-center text-gray-900 dark:text-white">
                                     Create your class
@@ -187,7 +189,7 @@ export const ContentHomeComponent = () => {
                                     <div className="mt-3">
                                         <label style={{ color:"#777575" , fontSize:"14px"}}>Class name</label>
                                         <div className="flex">
-                                            <input id="class" value={classes} onChange={onChangeClass} required   type="text" className="w-full py-2 border-b-gray-300" style={{ borderBottom:"1px solid #ebebeb"}} placeholder="Your class name"/>
+                                            <input id="class"  value={classes} onChange={onChangeClass} required  type="text" className="w-full py-2 border-b-gray-300" style={{ borderBottom:"1px solid #ebebeb"}} placeholder="Your class name"/>
                                             <button >
                                                 <i className="fa-solid fa-eye-slash" style={{ color:"#777575"}}>
                                                 </i>
@@ -196,21 +198,25 @@ export const ContentHomeComponent = () => {
                                     </div>
                                     <div className="my-3">
                                         <div className="mt-2">
-                                            <label style={{ color:"#777575" , fontSize:"14px"}}>Vocation</label>
+                                            <label style={{ color:"#777575", fontSize:"14px" }}>Vocation</label>
                                             <div className="flex">
-                                                <select  className="w-full py-2 cursor-pointer form-select mb-1"  defaultValue={selVocation} onChange={onChangeSelVocation}>
+                                                <select
+                                                    className="w-full py-2 cursor-pointer form-select mb-1"
+                                                    defaultValue={selVocation}
+                                                    onChange={onChangeSelVocation}
+                                                >
+                                                    <option  value='0'>Select your Vocation</option>
                                                     {vocations.map((itemVocation) => {
-                                                        return(
+                                                        return (
                                                             <option key={itemVocation.id} value={`${itemVocation.id}`}>{itemVocation.name}</option>
-                                                        )
+                                                        );
                                                     })}
                                                 </select>
-                                                <button >
-                                                    <i className="fa-solid fa-eye-slash" style={{ color:"#777575"}}>
-                                                    </i>
+                                                <button>
+                                                    <i className="fa-solid fa-eye-slash" style={{ color:"#777575" }}></i>
                                                 </button>
                                             </div>
-                                            <p className="my-0 py-0" style={{ fontSize:"12px" , color:"#ababab"}}>NOTE: kamu harus mempunyai jurusan terlebih dahulu sebelum membuat kelas</p>
+                                            <p className="my-0 py-0" style={{ fontSize:"12px", color:"#ababab" }}>NOTE: kamu harus mempunyai jurusan terlebih dahulu sebelum membuat kelas</p>
                                         </div>
                                         {/*<a href="http://127.0.0.1:8000/login/form?email=${email}&password=${password}">*/}
                                         {user === null ?(
@@ -219,7 +225,7 @@ export const ContentHomeComponent = () => {
                                             </a>
                                         ) : (
                                             <a  href={`http://127.0.0.1:8000/api/class/${user.id}/create/class?name=${classes}&vocationId=${selVocation}`}>
-                                                <div  className="w-full font-medium py-2.5 weverse-background-btn text-center mt-2" style={{ color:"#ffffff" , borderRadius:"4px" , fontSize:"16px" , border:"1px solid #A373E9" }}>Absent</div>
+                                                <div  className="w-full font-medium py-2.5 weverse-background-btn text-center mt-5" style={{ color:"#ffffff" , borderRadius:"4px" , fontSize:"16px" , border:"1px solid #A373E9" }}>Absent</div>
                                             </a>
                                             )
                                         }

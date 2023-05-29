@@ -1,8 +1,19 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {ContentDetailActivitiesComponent} from "../component/ContentDetailActivities.Component";
 import {CardPeopleAbsentComponent} from "../component/card/CardPeopleAbsent.Component";
+import {useNavigate, useParams} from "react-router-dom";
+import {CardPeopleComponent} from "../component/card/CardPeople.Component";
 
 function DetailMyActivities(){
+
+    const {id} = useParams();
+    const user = JSON.parse(localStorage.getItem('whoLogin'));
+    const navigate = useNavigate();
+
+    const handleTabClick = (e, tabName) => {
+        e.preventDefault();
+        navigate(`/my/absent/detail/${id}#${tabName}`);
+    };
 
     useEffect(() => {
         const tabsContainer = document.querySelector("#tabs");
@@ -36,6 +47,14 @@ function DetailMyActivities(){
         };
     }, [])
 
+    const [absent , setAbsent] = useState([]);
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/api/my/${user.id}/absent/${id}`)
+            .then((response) => response.json())
+            .then((absent => setAbsent(absent)))
+    } , [])
+
+
     return(
         <>
             <nav className="border-b">
@@ -48,8 +67,16 @@ function DetailMyActivities(){
                                 </div>
                             </button>
                             <div className="my-2 text-left" >
-                                <h4 style={{ fontSize:"16px"}}>Class Name</h4>
-                                <p style={{ fontSize:"14px"}}>Teacher Name</p>
+                                {absent.map((itemAbsent) => {
+                                    return(
+                                        <>
+                                            <div>
+                                                <h4 style={{ fontSize:"16px"}}>{itemAbsent.class}</h4>
+                                                <p style={{ fontSize:"14px"}}>{itemAbsent.vocation}</p>
+                                            </div>
+                                        </>
+                                    )
+                                })}
                             </div>
                         </div>
                         <div className="">
@@ -72,39 +99,54 @@ function DetailMyActivities(){
                 {/* Tab Contents */}
                 <div id="tab-contents" className=" w-full mx-auto">
                     <div id="first" className="p-4">
-                        <div className="w-full pb-5 pt-2">
-                            <div style={{ background:"#ffffff"}}>
-                                <ContentDetailActivitiesComponent />
-                            </div>
-                        </div>
+                        {absent.map((itemAbsent) => {
+                            return(
+                                <>
+                                    <div className="w-full pb-5 pt-2">
+                                        <div style={{ background:"#ffffff"}}>
+                                            <ContentDetailActivitiesComponent title={itemAbsent.title} date={itemAbsent.date} teacher={itemAbsent.teacher} starttime={itemAbsent.start_time} duedate={itemAbsent.due_date} endtime={itemAbsent.end_time}  />
+                                            {/*<ContentDetailActivitiesComponent />*/}
+                                        </div>
+                                    </div>
+                                </>
+                            )
+                        })}
                     </div>
                     <div id="third" className="hidden p-4">
                         <div className="w-10/12 mx-auto py-5">
                             <div className="lg:flex gap-4 lg:justify-between grid  md:grid-cols-1 w-full">
                                 {/*grid , grid-cols-2*/}
-                                <div className="lg:w-4/12 w-full">
-                                    <div className="shadow w-full pb-6 border-radius-8">
-                                        <div className="mx-4 text-left pt-5 pb-3 ">
-                                            <h2 style={{ fontSize:"18px"  ,color:"#646464"}}>Your link class</h2>
-                                            <p style={{ color:"#646464"}}>Use this code to invite your friends</p>
-                                        </div>
-                                        <div className="mx-4">
-                                            <button className="w-full py-2 disabled bg-gray-100 weverse-color text-white border-radius-4" >
-                                                5678907
-                                            </button>
-                                        </div>
+                                {absent.map((itemClass) => {
+                                    return(
+                                        <>
+                                            <div className="lg:w-4/12 w-full">
+                                                <div className="shadow w-full pb-6 border-radius-8">
+                                                    <div className="mx-4 text-left pt-5 pb-3 ">
+                                                        <h2 style={{ fontSize:"18px"  ,color:"#646464"}}>List Student </h2>
+                                                        <p style={{ color:"#646464"}}>List untuk mengetahui siapa saja yang sudah absent</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="lg:w-10/12 w-full">
+                                                <div className=" my-4 w-full text-left">
+                                                    <h2 style={{ fontSize:"20px"}}>Student List</h2>
+                                                </div>
+                                                <ul className=" w-full block">
+                                                    {itemClass.students.map((itemClassStudent) => {
+                                                        return(
+                                                            <>
+                                                                <div>
+                                                                    <CardPeopleAbsentComponent id={itemClass.id} user_id={itemClassStudent.id} name={itemClassStudent.name} />
+                                                                </div>
+                                                            </>
+                                                        )
+                                                    })}
+                                                </ul>
+                                            </div>
 
-                                    </div>
-                                </div>
-                                <div className="lg:w-10/12 w-full">
-                                    <div className=" my-4 w-full text-left">
-                                        <h2 style={{ fontSize:"20px"}}>Student List</h2>
-                                    </div>
-                                    <ul className=" w-full block">
-                                        <CardPeopleAbsentComponent />
-                                        <CardPeopleAbsentComponent />
-                                    </ul>
-                                </div>
+                                        </>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>

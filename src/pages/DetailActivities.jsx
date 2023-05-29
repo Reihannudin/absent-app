@@ -53,7 +53,6 @@ function DetailActivities(){
 
     const { id   } = useParams();
 
-
     const [absent , setAbsent] = useState([]);
 
     useEffect(() => {
