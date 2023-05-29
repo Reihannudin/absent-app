@@ -16,6 +16,8 @@ import Logout from "./pages/Logout";
 import {PopUpCardHistoryComponent} from "./component/card/popup/PopUpCardHistory.Component";
 import {PopUpCardActivityComponent} from "./component/card/popup/PopUpCardActivity.Component";
 import {PopUpCardAbsentClassComponent} from "./component/card/popup/PopUpCardAbsentClass.Component";
+import CreateActivities from "./pages/CreateActivities";
+import UpdateActivities from "./pages/UpdateActivities";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
             <Route path="/class" element={<Classes />} />
             <Route path="/class/detail/:id" element={<DetailClasses />} />
             <Route path="/my/class/detail/:id" element={<DetailMyClass />} />
+            <Route path="/my/class/create/absent/:id" element={<CreateActivities />} />
+            <Route path="/my/class/update/absent/:id" element={<UpdateActivities />} />
             <Route path="/my/absent/detail/:id" element={<DetailMyActivities  />} />
             <Route path="/login" element={<Login />} />
             <Route path="/login/redirect" element={<Login />} />
